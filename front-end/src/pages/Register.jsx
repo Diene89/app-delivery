@@ -37,7 +37,7 @@ function Register() {
     setErrorMsgUserExist(false);
   }
 
-  function validateRegister() {
+  async function validateRegister() {
     resetErrorMsgs();
 
     const { checkName, checkEmail, checkPassword } = validateFields();
@@ -52,7 +52,7 @@ function Register() {
       return;
     }
 
-    const userInfo = requestRegister(
+    const userInfo = await requestRegister(
       { name: userName, email: userEmail, password: userPassword },
     );
 
