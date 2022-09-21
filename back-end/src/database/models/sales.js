@@ -22,6 +22,19 @@ module.exports = (sequelize, DataTypes) => {
             { foreignKey: 'userId', as: 'user' },
             { foreignKey: 'sellerId', as: 'seller' },
         );
+
+        models.User.hasMany(Sales,
+            { 
+                foreignKey: 'userId',
+                sourceKeys: 'id',
+                as: 'commom-user',
+            },
+            { 
+                foreignKey: 'sellerId',
+                sourceKeyas: 'id',
+                as: 'seller-user',
+            }
+        )
     };
 
     return Sales;
