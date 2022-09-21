@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const md5 = require('md5');
 const db = require('../../database/models');
 
 const validateUserBody = (data) => {
@@ -25,10 +26,17 @@ const checkIfExists = async (email) => {
     error.name = 'NotFoundError';
     throw error;
   }
+  
+  return user;
 };
 
 const checkPassword = async (dbPassword, bodyPassword) => {
-  if (dbPassword === bodyPassword) return true;
+  const password = md5(bodyPassword);
+  if (dbPassword !== password) {
+    const error = new Error('Incorrect email or password');
+    error.name = 'ValidationError';
+    throw error;
+  }
 };
 
 module.exports = {
