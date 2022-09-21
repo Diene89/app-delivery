@@ -1,6 +1,6 @@
-const Joi = require("joi");
-const db = require('../database/models');
+const Joi = require('joi');
 const md5 = require('md5');
+const db = require('../database/models');
 
 const registerService = {
   validateRegisterBody(data) {
@@ -18,7 +18,7 @@ const registerService = {
     return value;
   },
 
-  async create({ name, email, password}) {
+  async create({ name, email, password }) {
     const checkIfUser = await db.user.findOne({
       where: { email },
     });
@@ -35,9 +35,9 @@ const registerService = {
       name,
       email,
       password: cryptoPassword,
-      role: 'customer'
-    })
-  }
-}
+      role: 'customer',
+    });
+  },
+};
 
 module.exports = registerService;

@@ -5,7 +5,7 @@ const registerController = {
     const data = registerService.validateRegisterBody(req.body);
     await registerService.create(data);
     return res.status(201).end();
-  }
-}
+  },
+};
 
 module.exports = registerController;
