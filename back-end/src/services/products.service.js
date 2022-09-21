@@ -1,9 +1,14 @@
-const { Product } = require('../database/models/products')
+const db = require('../database/models')
 
 module.exports = {
     async listProducts() {
-        const products = await Product.findAll();
-           
+        const products = await db.products.findAll();
+        console.log(products, 'serviceeeeee');
+        if (!products) {
+          const error = new Error('Not found');
+          error.name = 'NotFoundError';
+          throw error;
+        }
         return products;
       }
 }
