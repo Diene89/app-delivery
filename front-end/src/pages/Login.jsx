@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ContainerLogin from '../assets/styles/Login';
 import rockGlass from '../assets/images/rockGlass.svg';
+import requestLogin from '../api/requestLogin';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -15,6 +16,11 @@ function Login() {
     const passwordValidation = password.length > passwordLength;
     if (emailValidation && passwordValidation) setButtonDisabled(false);
   }, [email, password]);
+
+  const loginHandle = async () => {
+    const response = await requestLogin({ email, password });
+    console.log(response);
+  };
 
   return (
     <ContainerLogin>
@@ -43,6 +49,7 @@ function Login() {
           <button
             type="button"
             disabled={ buttonDisabled }
+            onClick={ loginHandle }
             data-testid="common_login__button-login"
           >
             LOGIN
