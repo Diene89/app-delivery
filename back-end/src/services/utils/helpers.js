@@ -1,7 +1,7 @@
-import Joi from 'joi';
-import db from '../../database/models';
+const Joi = require('joi');
+const db = require('../../database/models');
 
-export const validateUserBody = (data) => {
+const validateUserBody = (data) => {
   const bodySchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
@@ -17,7 +17,7 @@ export const validateUserBody = (data) => {
   return value;
 };
 
-export const checkIfExists = async (email) => {
+const checkIfExists = async (email) => {
   const user = db.user.findOne({ where: { email } });
 
   if (!user) {
@@ -27,6 +27,12 @@ export const checkIfExists = async (email) => {
   }
 };
 
-export const checkPassword = async (dbPassword, bodyPassword) => {
+const checkPassword = async (dbPassword, bodyPassword) => {
   if (dbPassword === bodyPassword) return true;
+};
+
+module.exports = {
+  validateUserBody,
+  checkIfExists,
+  checkPassword,
 };

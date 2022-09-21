@@ -1,11 +1,9 @@
-import loginService from '../services/login.service';
+const loginService = require('../services/login.service');
 
-const loginController = {
+module.exports = {
   async login(req, res) {
     const token = await loginService.login(req.body);
 
     return res.status(200).json({ token });
   },
 };
-
-export default loginController;

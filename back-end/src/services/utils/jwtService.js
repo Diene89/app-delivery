@@ -1,8 +1,8 @@
-import 'dotenv/config';
+require('dotenv/config');
 
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-const jwtService = {
+module.exports = {
   createToken(data) {
     const token = jwt.sign(data, process.env.JWT_SECRET);
 
@@ -27,5 +27,3 @@ const jwtService = {
     }
   },
 };
-
-export default jwtService;

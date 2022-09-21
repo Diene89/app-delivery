@@ -1,9 +1,9 @@
-import { 
+const { 
   validateUserBody, checkIfExists, checkPassword,
-} from './utils/helpers';
-import jwtService from './utils/jwtService';
+} = require('./utils/helpers');
+const jwtService = require('./utils/jwtService');
 
-const loginService = {
+module.exports = {
   async login(data) {
     const user = validateUserBody(data);
 
@@ -16,5 +16,3 @@ const loginService = {
     return token;
   },
 };
-
-export default loginService;
