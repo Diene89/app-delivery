@@ -7,11 +7,11 @@ const ContainerLogin = styled.div`
   justify-content: center;
   align-items: center;
 
-.formLogin {
-  border: 1px solid black;
-  width: 400px;
-  height:500px;
-}
+  .formLogin {
+    border: 1px solid black;
+    width: 400px;
+    height:500px;
+  }
 `;
 
 export default ContainerLogin;
