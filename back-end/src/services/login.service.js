@@ -9,7 +9,7 @@ const loginService = {
 
     await checkIfExists(user);
 
-    await checkPassword(user.password);
+    await checkPassword(user.password, data.password);
 
     const token = jwtService.createToken(user);
 

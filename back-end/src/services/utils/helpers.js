@@ -26,3 +26,7 @@ export const checkIfExists = async (email) => {
     throw error;
   }
 };
+
+export const checkPassword = async (dbPassword, bodyPassword) => {
+  if (dbPassword === bodyPassword) return true;
+};
