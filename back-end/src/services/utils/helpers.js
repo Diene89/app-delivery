@@ -18,7 +18,7 @@ const validateUserBody = (data) => {
 };
 
 const checkIfExists = async (email) => {
-  const user = db.user.findOne({ where: { email } });
+  const user = await db.user.findOne({ where: { email } });
 
   if (!user) {
     const error = new Error('Not found');
