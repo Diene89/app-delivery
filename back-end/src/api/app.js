@@ -2,7 +2,11 @@ const express = require('express');
 require('express-async-errors');
 
 const loginRoute = require('../routes/login.route');
+
+const productsRoute = require('../routes/products.route');
+
 const registerRoute = require('../routes/register.route');
+
 const middlewareError = require('../middlewares/errors');
 
 const app = express();
@@ -12,6 +16,8 @@ app.use(express.json());
 
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
+
+app.use('/customer', productsRoute);
 
 app.use(middlewareError);
 
