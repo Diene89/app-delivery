@@ -38,8 +38,6 @@ const registerService = {
       role: 'customer',
     });
   },
-
-  
 };
 
 module.exports = registerService;
