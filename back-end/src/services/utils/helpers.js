@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import db from '../../database/models';
 
-export const validateUserBody = async (data) => {
+export const validateUserBody = (data) => {
   const bodySchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
@@ -17,11 +17,10 @@ export const validateUserBody = async (data) => {
   return value;
 };
 
-export const checkIfExists = async (data) => {
-  const { email, password } = data;
+export const checkIfExists = async (email) => {
   const user = db.user.findOne({ where: { email } });
 
-  if (!user || password !== user.password) {
+  if (!user) {
     const error = new Error('Not found');
     error.name = 'NotFoundError';
     throw error;
