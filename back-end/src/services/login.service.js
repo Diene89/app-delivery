@@ -7,7 +7,7 @@ const loginService = {
   async login(data) {
     const user = validateUserBody(data);
 
-    await checkIfExists(user);
+    await checkIfExists(user.email);
 
     await checkPassword(user.password, data.password);
 
