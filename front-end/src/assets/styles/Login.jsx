@@ -8,6 +8,10 @@ const ContainerLogin = styled.div`
   align-items: center;
 
   .formLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     border: 1px solid black;
     width: 400px;
     height:500px;
