@@ -1,4 +1,4 @@
-const db = require('../database/models')
+const db = require('../database/models');
 
 module.exports = {
     async listProducts() {
@@ -9,5 +9,5 @@ module.exports = {
           throw error;
         }
         return products;
-      }
-}
+      },
+};
