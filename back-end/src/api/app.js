@@ -8,6 +8,8 @@ const middlewareError = require('../middlewares/errors');
 const app = express();
 app.use(express.json());
 
+app.use(express.json());
+
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 
