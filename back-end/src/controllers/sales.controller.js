@@ -16,4 +16,14 @@ module.exports = {
 
     return res.status(200).json(sale);
   },
+
+  async updateStatus(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const updatedStatus = await salesService.updateStatus(id, status);
+    console.log(updatedStatus);
+
+    return res.status(201).json({ message: 'Successfully update' });
+  },
 };
