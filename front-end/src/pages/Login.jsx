@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ContainerLogin from '../assets/styles/Login';
 import rockGlass from '../assets/images/rockGlass.svg';
 
@@ -6,6 +7,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const passwordLength = 5;
@@ -15,6 +17,10 @@ function Login() {
     const passwordValidation = password.length > passwordLength;
     if (emailValidation && passwordValidation) setButtonDisabled(false);
   }, [email, password]);
+
+  function navigateTo(path) {
+    navigate(path);
+  }
 
   return (
     <ContainerLogin>
@@ -50,6 +56,7 @@ function Login() {
           <button
             type="button"
             data-testid="common_login__button-register"
+            onClick={ () => navigateTo('/register') }
           >
             Ainda não tenho conta
           </button>
