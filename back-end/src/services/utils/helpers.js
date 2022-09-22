@@ -18,6 +18,24 @@ const validateUserBody = (data) => {
   return value;
 };
 
+const validateAdminUserBody = (data) => {
+  const bodySchema = Joi.object({
+    name: Joi.string().min(12).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+    role: Joi.string().required(),
+  });
+
+  const { error, value } = bodySchema.validate(data);
+
+  if (error) {
+    error.name = 'ValidationError';
+    throw error;
+  }
+
+  return value;
+};
+
 const checkIfExists = async (email) => {
   const user = await db.user.findOne({ where: { email } });
 
@@ -43,4 +61,5 @@ module.exports = {
   validateUserBody,
   checkIfExists,
   checkPassword,
+  validateAdminUserBody,
 };
