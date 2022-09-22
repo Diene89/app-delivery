@@ -10,7 +10,7 @@ module.exports = {
   },
 
   async getSaleById(req, res) {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const sale = await salesService.getSaleById(id);
 

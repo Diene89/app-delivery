@@ -8,7 +8,7 @@ module.exports = {
   },
 
   async getSaleById(id) {
-    const sale = await db.sales.findOne({ where: id });
+    const sale = await db.sales.findOne({ where: { id } });
 
     return sale;
   },
