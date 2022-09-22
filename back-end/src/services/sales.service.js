@@ -6,4 +6,10 @@ module.exports = {
 
     return sales;
   },
+
+  async getSaleById(id) {
+    const sale = await db.sales.findOne({ where: id });
+
+    return sale;
+  },
 };
