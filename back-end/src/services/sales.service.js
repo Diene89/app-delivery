@@ -1,37 +1,54 @@
-const { sales, salesProducts, products, sequelize } = require('../database/models');
+const { sales, salesProducts, products, sequelize, user } = require('../database/models');
+
+const jwtService = require('./utils/jwtService');
 
 module.exports = {
     async checkoutNewSale(data, productCart) {
-        const t = await sequelize.transaction();
-    
-        const productList = [];
-        const product = await Promise.all(productList);
-        productCart.forEach((item) => productList.push(products.findOne({ where: { name: item.name } })));
+     
         const newSale = await sales.create(data);
+  
+        const arrayProduct = productCart.map((item) => ({
+            saleId: newSale.dataValues.id, productId: item.id, quantity: item.quantity
+        }))
 
-
-        product.map(({ id }, index) => salesProducts.create({
-            saleId: newSale.id, productId: id, quantity: productCart[index].quantity,
-          }));
+         await salesProducts.bulkCreate(arrayProduct);
 
         return newSale;
-        // try {
-        //     const newSale = await sales.create(data, 
-        //         { transaction: t }, { raw: true });
-                
-        //     await Promise.all(productsList.map(({ id }, index) => salesProducts.create(
-        //         {
-        //             saleId: newSale.id, productId: id, quantity: productCart[index].quantity,
-        //         },
-        //         { transaction: t },
-        //     )));
-            
-        //     await t.commit();
-        //     return newSale;
-        // } catch (error) {
-        //     console.log(error.message, 'erroooooo');
-        //     await t.rollback();
-        //     return error;
-        // }
     },
+
+  async getAllSales(token) {
+    const { id } = jwtService.decodeToken(token);
+
+    const sales = await sales.findAll({ where: { userId: id } });
+
+    if (!sales.length) {
+      return { message: 'Você não possui nenhuma compra' };
+    }
+
+    return sales;
+  },
+
+  async getSaleById(id) {
+    const sale = await sales.findByPk(id, {
+      include: [{
+        as: 'seller',
+        model: user,
+        attributes: ['name'],
+      }],
+    });
+
+    if (!sale) {
+      return { message: 'Compra não encontrada' };
+    }
+
+    return sale;
+  },
+
+  async updateStatus(id, status) {
+    await sales.update(
+      { status },
+      { where: { id } },
+    );
+  },
 };
+

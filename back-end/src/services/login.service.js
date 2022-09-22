@@ -7,12 +7,12 @@ module.exports = {
   async login(data) {
     const user = validateUserBody(data);
 
-    const { password } = await checkIfExists(user.email);
+    const { id, name, email, role, password } = await checkIfExists(user.email);
 
     await checkPassword(password, data.password);
 
-    const token = jwtService.createToken(user);
+    const token = jwtService.createToken({ id, ...user });
 
-    return token;
+    return { name, email, role, token };
   },
 };

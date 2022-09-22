@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
          totalPrice: {
             type: DataTypes.DECIMAL(9, 2), 
             field: 'total_price'
+
         },
          deliveryAddress: {
             type: DataTypes.STRING,
@@ -27,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             field: 'sale_date',
             defaultValue: DataTypes.NOW
+
         },
          status: DataTypes.STRING,
     }, {
