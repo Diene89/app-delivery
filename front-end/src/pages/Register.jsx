@@ -61,7 +61,7 @@ function Register() {
     } else {
       localStorage.setItem('user', JSON.stringify(userInfo));
 
-      navigate('/costumer/products');
+      navigate('/customer/products');
     }
   }
 
