@@ -7,14 +7,15 @@ module.exports = (sequelize, DataTypes) => {
          },
          userId: {
             type: DataTypes.INTEGER,
-            field: 'user_id' },
+            field: 'user_id',
+        },
          sellerId: {
             type: DataTypes.INTEGER,
-            field: 'seller_id' },
+            field: 'seller_id',
+        },
          totalPrice: {
             type: DataTypes.DECIMAL(9, 2), 
             field: 'total_price'
-
         },
          deliveryAddress: {
             type: DataTypes.STRING,
@@ -28,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             field: 'sale_date',
             defaultValue: DataTypes.NOW
-
         },
          status: DataTypes.STRING,
     }, {

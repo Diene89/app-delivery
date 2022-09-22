@@ -1,10 +1,12 @@
 const salesService = require('../services/sales.service');
-// const checkIfExists = require('./utils/helpers');
+const { decodeToken } = require('../services/utils/jwtService');
 
 module.exports = {
     async checkoutNewSale(req, res) {
-        // const { id } = await checkIfExists(user.email);
-        const { id } = req.params;
+        const { authorization } = req.headers;
+        const { id } = decodeToken(authorization);
+        console.log(typeof id, 'la vem elaaaaa');
+
         const status = 'Pendente';
         const date = new Date();
 
@@ -13,7 +15,7 @@ module.exports = {
             deliveryNumber, productCart } = req.body;
 
         const result = await salesService.checkoutNewSale({
-            userId: Number(id),
+            userId: id,
             sellerId,
             totalPrice,
             deliveryAddress,

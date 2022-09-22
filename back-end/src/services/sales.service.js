@@ -6,12 +6,14 @@ module.exports = {
     async checkoutNewSale(data, productCart) {
      
         const newSale = await sales.create(data);
+        console.log(newSale, 'me deixaaaaaaa');
   
         const arrayProduct = productCart.map((item) => ({
             saleId: newSale.dataValues.id, productId: item.id, quantity: item.quantity
         }))
 
-         await salesProducts.bulkCreate(arrayProduct);
+        await salesProducts.bulkCreate(arrayProduct);
+
 
         return newSale;
     },
