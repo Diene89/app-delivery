@@ -7,6 +7,4 @@ salesRoute.get('/', salesController.getAllSales);
 salesRoute.get('/:id', salesController.getSaleById);
 salesRoute.patch('/:id', salesController.updateStatus);
 
-salesRoute.post('/', salesController.create);
-
 module.exports = salesRoute;
