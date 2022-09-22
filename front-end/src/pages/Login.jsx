@@ -11,7 +11,6 @@ function Login() {
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const passwordLength = 5;
     setButtonDisabled(true);
