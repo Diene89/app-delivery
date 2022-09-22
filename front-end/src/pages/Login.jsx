@@ -48,6 +48,7 @@ function Login() {
           </label>
           <button
             type="button"
+            className="login-button"
             disabled={ buttonDisabled }
             onClick={ loginHandle }
             data-testid="common_login__button-login"
@@ -56,6 +57,7 @@ function Login() {
           </button>
           <button
             type="button"
+            className="register-button"
             data-testid="common_login__button-register"
           >
             Ainda não tenho conta
