@@ -8,7 +8,13 @@ module.exports = {
   },
 
   async getSaleById(id) {
-    const sale = await db.sales.findOne({ where: { id } });
+    const sale = await db.sales.findByPk(id, {
+      include: [{
+        as: 'seller',
+        model: db.user,
+        attributes: ['name'],
+      }],
+    });
 
     return sale;
   },
