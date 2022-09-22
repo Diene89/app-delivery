@@ -18,4 +18,12 @@ module.exports = {
 
     return sale;
   },
+
+  async updateStatus(id, status) {
+    const updatedStatus = await db.sales.update(
+      { status },
+      { where: { id } },
+    );
+    console.log(updatedStatus);
+  },
 };
