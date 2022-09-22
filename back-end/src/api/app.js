@@ -17,7 +17,7 @@ app.use(express.json());
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 app.use('/customer', productsRoute);
-app.use('/customer/order', salesRoute);
+app.use('/customer/orders', salesRoute);
 
 app.use(middlewareError);
 
