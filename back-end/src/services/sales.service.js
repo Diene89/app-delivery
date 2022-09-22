@@ -4,6 +4,10 @@ module.exports = {
   async getAllSales(id) {
     const sales = await db.sales.findAll({ where: { userId: id } });
 
+    if (!sales.length) {
+      return { message: 'Você não possui nenhuma compra' };
+    }
+
     return sales;
   },
 
@@ -15,6 +19,10 @@ module.exports = {
         attributes: ['name'],
       }],
     });
+
+    if (!sale) {
+      return { message: 'Compra não encontrada' };
+    }
 
     return sale;
   },
