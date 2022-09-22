@@ -1,10 +1,15 @@
 const sellerService = require('../services/seller.service');
-// const jwtService = require('../services/utils/jwtService');
 
 module.exports = {
-  async getSalesByIdSeller(req, res) {
-    const { id } = req.headers.authorization;
-    const salesBySeller = await sellerService.getSalesByIdSeller(id);
+  async getSalesBySeller(req, res) {
+    const { authorization } = req.headers;
+    const salesBySeller = await sellerService.getSalesBySeller(authorization);
+    return res.status(200).json(salesBySeller);
+  },
+
+  async getSaleByIdOrder(req, res) {
+    const { id } = req.params;
+    const salesBySeller = await sellerService.getSaleByIdOrder(id);
     return res.status(200).json(salesBySeller);
   },
 };
