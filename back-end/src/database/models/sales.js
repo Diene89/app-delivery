@@ -5,15 +5,17 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.INTEGER
          },
-         userId: { 
+         userId: {
             type: DataTypes.INTEGER,
-            field: 'user_id' },
-         sellerId: { 
+            field: 'user_id',
+        },
+         sellerId: {
             type: DataTypes.INTEGER,
-            field: 'seller_id' },
-         totalPrice: { 
+            field: 'seller_id',
+        },
+         totalPrice: {
             type: DataTypes.DECIMAL(9, 2), 
-            field: 'total_price' 
+            field: 'total_price'
         },
          deliveryAddress: {
             type: DataTypes.STRING,
@@ -23,37 +25,34 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             field: 'delivery_number'
         },
-         saleDate: { 
+         saleDate: {
             type: DataTypes.DATE,
             field: 'sale_date',
-            defaultValue: DataTypes.NOW,
+            defaultValue: DataTypes.NOW
+
         },
          status: DataTypes.STRING,
     }, {
         tableName: 'sales',
         timestamps: false,
     })
-
     Sales.associate = (models) => {
-
         models.sales.belongsTo(models.user,
             { foreignKey: 'sellerId', as: 'seller' },
             { foreignKey: 'userId', as: 'user' },
         );
-
         models.user.hasMany(Sales,
-            { 
+            {
                 foreignKey: 'userId',
                 sourceKeys: 'id',
                 as: 'commom-user',
             },
-            { 
+            {
                 foreignKey: 'sellerId',
                 sourceKeyas: 'id',
                 as: 'seller-user',
             }
         )
     };
-
     return Sales;
 }

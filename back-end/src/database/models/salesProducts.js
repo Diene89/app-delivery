@@ -3,14 +3,18 @@ module.exports = (sequelize, DataTypes) => {
         saleId: {
             foreignKey: true,
             type: DataTypes.INTEGER,
-            field: 'sale_id',
+            field: 'sale_id'
+
          },
          productId: {
             foreignKey: true,
             type: DataTypes.INTEGER,
-            field: 'product_id',
+            field: 'product_id'
          },
-         quantity: DataTypes.INTEGER,
+         quantity: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+         },
     }, {
         tableName: 'salesProducts',
         timestamps: false,
