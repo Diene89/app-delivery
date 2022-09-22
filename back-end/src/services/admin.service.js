@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const { Op } = require('sequelize');
 const { validateAdminUserBody, checkIfUser } = require('./utils/helpers');
 const db = require('../database/models');
 
@@ -22,7 +23,7 @@ module.exports = {
 
   async getAllUsers() {
     const users = await db.user.findAll({ where: { role: {
-      [db.sequelize.Op.not]: 'admin',
+      [Op.not]: 'administrator',
     } } });
 
     if (!users) return { message: 'Nenhum usuário encontrado' };

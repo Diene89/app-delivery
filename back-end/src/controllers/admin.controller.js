@@ -6,4 +6,10 @@ module.exports = {
 
     return res.status(201).json(userCreated);
   },
+
+  async getAllUsers(req, res) {
+    const users = await adminService.getAllUsers();
+
+    return res.status(200).json(users);
+  },
 };
