@@ -6,7 +6,8 @@ const requestLogin = async (loginForm) => {
     },
     body: JSON.stringify(loginForm),
   });
-  return response;
+  const data = await response.json();
+  return data;
 };
 
 export default requestLogin;
