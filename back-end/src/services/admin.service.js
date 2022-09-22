@@ -19,4 +19,14 @@ module.exports = {
 
     return userCreated;
   },
+
+  async getAllUsers() {
+    const users = await db.user.findAll({ where: { role: {
+      [db.sequelize.Op.not]: 'admin',
+    } } });
+
+    if (!users) return { message: 'Nenhum usuário encontrado' };
+
+    return users;
+  },
 };
