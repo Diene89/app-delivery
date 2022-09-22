@@ -17,4 +17,12 @@ module.exports = {
     return res.status(200).json(sale);
   },
 
+  async updateStatus(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    await salesService.updateStatus(id, status);
+
+    return res.status(201).json({ message: 'Successfully update' });
+  },
 };
