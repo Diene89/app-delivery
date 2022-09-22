@@ -3,6 +3,7 @@ const sellerController = require('../controllers/seller.controller');
 
 const sellerRoute = Router();
 
-sellerRoute.get('/', sellerController.getSalesByIdSeller);
+sellerRoute.get('/', sellerController.getSalesBySeller);
+sellerRoute.get('/:id', sellerController.getSaleByIdOrder);
 
 module.exports = sellerRoute;
