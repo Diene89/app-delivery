@@ -7,7 +7,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
-
+  const [loginError, setLoginError] = useState(false);
   useEffect(() => {
     const passwordLength = 5;
     setButtonDisabled(true);
@@ -19,7 +19,7 @@ function Login() {
 
   const loginHandle = async () => {
     const response = await requestLogin({ email, password });
-    console.log(response);
+    if (response.message) setLoginError(true);
   };
 
   return (
@@ -63,8 +63,9 @@ function Login() {
           <span
             data-testid="common_login__element-invalid-email"
           >
-            Menssagem de ERRO
+            { loginError ? 'Menssagem de ERRO' : '' }
           </span>
+
         </form>
       </div>
     </ContainerLogin>
