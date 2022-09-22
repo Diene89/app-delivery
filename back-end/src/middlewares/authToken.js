@@ -6,4 +6,4 @@ module.exports = (req, _res, next) => {
   jwtService.validateToken(authorization);
 
   next();
-}
+};
