@@ -50,6 +50,7 @@ function Login() {
             type="button"
             disabled={ buttonDisabled }
             data-testid="common_login__button-login"
+            onClick={ () => navigateTo('/customer/products') }
           >
             LOGIN
           </button>
