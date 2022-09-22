@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContainerLogin from '../assets/styles/Login';
 import rockGlass from '../assets/images/rockGlass.svg';
+import requestLogin from '../api/requestLogin';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +23,15 @@ function Login() {
   function navigateTo(path) {
     navigate(path);
   }
+
+  const loginHandle = async () => {
+    const response = await requestLogin({ email, password });
+    if (response.message) {
+      setLoginError(true);
+    } else {
+      navigateTo('/customer/products');
+    }
+  };
 
   return (
     <ContainerLogin>
@@ -48,13 +59,16 @@ function Login() {
           </label>
           <button
             type="button"
+            className="login-button"
             disabled={ buttonDisabled }
+            onClick={ loginHandle }
             data-testid="common_login__button-login"
           >
             LOGIN
           </button>
           <button
             type="button"
+            className="register-button"
             data-testid="common_login__button-register"
             onClick={ () => navigateTo('/register') }
           >
@@ -63,8 +77,9 @@ function Login() {
           <span
             data-testid="common_login__element-invalid-email"
           >
-            Menssagem de ERRO
+            { loginError ? 'Menssagem de ERRO' : '' }
           </span>
+
         </form>
       </div>
     </ContainerLogin>

@@ -6,6 +6,8 @@ const loginRoute = require('../routes/login.route');
 const productsRoute = require('../routes/products.route');
 const salesRoute = require('../routes/sales.route');
 const registerRoute = require('../routes/register.route');
+const adminRoute = require('../routes/admin.route');
+const sellerRoute = require('../routes/seller.route');
 const middlewareError = require('../middlewares/errors');
 
 const app = express();
@@ -16,6 +18,8 @@ app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 app.use('/customer', productsRoute, salesRoute);
 app.use('/customer/orders', salesRoute);
+app.use('/admin', adminRoute);
+app.use('/seller/orders', sellerRoute);
 
 app.use(middlewareError);
 
