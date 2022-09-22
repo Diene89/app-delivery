@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import requestRegister from '../api/requestRegister';
 import ContainerRegister from '../assets/styles/Register';
@@ -14,7 +14,7 @@ function Register() {
   const [errorMsgUserExist, setErrorMsgUserExist] = useState(false);
   const navigate = useNavigate();
 
-  function validateFields() {
+  const validateFields = useCallback(() => {
     const nameMinLength = 12;
     const passwordMinLength = 6;
     const regexToValidateEmail = /\S+@\S+\.\S+/;
@@ -28,7 +28,7 @@ function Register() {
       checkPassword: passwordLengthValidation,
       toggleBtn: (emailValidation && nameLengthValidation && passwordLengthValidation),
     };
-  }
+  }, [userName, userEmail, userPassword]);
 
   function resetErrorMsgs() {
     setErrorMsgName(false);
@@ -69,7 +69,7 @@ function Register() {
     const { toggleBtn } = validateFields();
 
     setButtonDisabled(!toggleBtn);
-  }, [userEmail, userName, userPassword]);
+  }, [userEmail, userName, userPassword, validateFields]);
 
   return (
     <ContainerRegister>
