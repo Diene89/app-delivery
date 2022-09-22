@@ -2,9 +2,9 @@ const salesService = require('../services/sales.service');
 
 module.exports = {
   async getAllSales(req, res) {
-    const { id } = req.body;
+    const { authorization } = req.headers;
 
-    const sales = await salesService.getAllSales(id);
+    const sales = await salesService.getAllSales(authorization);
 
     return res.status(200).json(sales);
   },

@@ -26,4 +26,10 @@ module.exports = {
       throw error;
     }
   },
+
+  decodeToken(token) {
+    const user = jwt.decode(token);
+
+    return user;
+  },
 };

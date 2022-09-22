@@ -1,7 +1,10 @@
 const db = require('../database/models');
+const jwtService = require('./utils/jwtService');
 
 module.exports = {
-  async getAllSales(id) {
+  async getAllSales(token) {
+    const { id } = jwtService.decodeToken(token);
+
     const sales = await db.sales.findAll({ where: { userId: id } });
 
     if (!sales.length) {
