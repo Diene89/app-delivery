@@ -48,6 +48,18 @@ const checkIfExists = async (email) => {
   return user;
 };
 
+const checkIfUser = async (email) => {
+  const user = await db.user.findOne({
+    where: { email },
+  });
+  
+  if (user) {
+    const error = new Error('User already registered');
+    error.name = 'ConflictError';
+    throw error;
+  }
+};
+
 const checkPassword = async (dbPassword, bodyPassword) => {
   const password = md5(bodyPassword);
   if (dbPassword !== password) {
@@ -62,4 +74,5 @@ module.exports = {
   checkIfExists,
   checkPassword,
   validateAdminUserBody,
+  checkIfUser,
 };

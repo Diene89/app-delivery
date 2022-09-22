@@ -1,13 +1,12 @@
 const md5 = require('md5');
-const { validateAdminUserBody, checkIfExists } = require('./utils/helpers');
+const { validateAdminUserBody, checkIfUser } = require('./utils/helpers');
 const db = require('../database/models');
 
 module.exports = {
   async create(data) {
     const user = validateAdminUserBody(data);
 
-    const exist = await checkIfExists(user.email);
-    if (!exist) throw new Error('Usuário já cadastrado');
+    await checkIfUser(data.email);
 
     const cryptoPassword = md5(user.password);
 
