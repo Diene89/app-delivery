@@ -1,19 +1,25 @@
-const { Sales, SalesProducts, Products } = require('../database/models');
+const { Sales, SalesProducts, Products, sequelize } = require('../database/models');
 
 module.exports = {
-    async checkoutNewSale(data, productsCart) {
-        const newSale = await Sales.create(data);
-        const products = [];
-    
-        productsCart.forEach((product) => products.push(Products.findOne({
-            where: { name: product.name },
-        })));
-
-        const productList = await Promise.all(products);
-    
-        productList.forEach(({ id }, index) => SalesProducts.create({
-            saleId: newSale.id, productId: id, quantity: productsCart[index].quantity,
-        }));
-        return newSale;
+    async checkoutNewSale(data) {
+        const t = await sequelize.transaction();
+        console.log(data, 'dataaaaaa');
+        
+        try {
+            const newSale = await Sales.create(data, 
+                { transaction: t }, { raw: true });
+            await Promise.all(Products.map(({ productId, quantity }) => SalesProducts.create(
+                {
+                    saleId: newSale.id, productId, quantity,
+                },
+                { transaction: t },
+            )));
+            
+            await t.commit();
+            return newSale;
+        } catch (error) {
+            await t.rollback();
+            return error;
+        }
     },
 };
