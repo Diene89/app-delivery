@@ -20,10 +20,9 @@ module.exports = {
   },
 
   async updateStatus(id, status) {
-    const updatedStatus = await db.sales.update(
+    await db.sales.update(
       { status },
       { where: { id } },
     );
-    console.log(updatedStatus);
   },
 };

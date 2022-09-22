@@ -21,8 +21,7 @@ module.exports = {
     const { id } = req.params;
     const { status } = req.body;
 
-    const updatedStatus = await salesService.updateStatus(id, status);
-    console.log(updatedStatus);
+    await salesService.updateStatus(id, status);
 
     return res.status(201).json({ message: 'Successfully update' });
   },
