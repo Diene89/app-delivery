@@ -4,8 +4,8 @@ const jwtService = require('../services/utils/jwtService');
 const registerController = {
   async create(req, res) {
     const data = registerService.validateRegisterBody(req.body);
-    const { dataValues: { name, email, role } } = await registerService.create(data);
-    const token = jwtService.createToken(req.body.email);
+    const { dataValues: { id, name, email, role } } = await registerService.create(data);
+    const token = jwtService.createToken({ id, email });
     return res.status(201).json({
       name,
       email,
