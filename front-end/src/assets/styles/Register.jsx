@@ -76,6 +76,10 @@ const ContainerRegister = styled.div`
     width: 371px;
   }
 
+  .register-button:disabled, .register-button[disabled] {
+    background-color: #939393;
+  }
+
   .register-button-span {
     color: #F2FFFC;
     font-family: Roboto, sans-serif;
