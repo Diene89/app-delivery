@@ -8,4 +8,12 @@ module.exports = {
 
     return res.status(200).json(sales);
   },
+
+  async getSaleById(req, res) {
+    const { id } = req.body;
+
+    const sale = await salesService.getSaleById(id);
+
+    return res.status(200).json(sale);
+  },
 };
