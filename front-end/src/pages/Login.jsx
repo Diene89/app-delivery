@@ -20,14 +20,18 @@ function Login() {
     if (emailValidation && passwordValidation) setButtonDisabled(false);
   }, [email, password]);
 
-  const loginHandle = async () => {
-    const response = await requestLogin({ email, password });
-    if (response.message) setLoginError(true);
-  };
-
   function navigateTo(path) {
     navigate(path);
   }
+
+  const loginHandle = async () => {
+    const response = await requestLogin({ email, password });
+    if (response.message) {
+      setLoginError(true);
+    } else {
+      navigateTo('/customer/products');
+    }
+  };
 
   return (
     <ContainerLogin>
@@ -59,7 +63,6 @@ function Login() {
             disabled={ buttonDisabled }
             onClick={ loginHandle }
             data-testid="common_login__button-login"
-            onClick={ () => navigateTo('/customer/products') }
           >
             LOGIN
           </button>
