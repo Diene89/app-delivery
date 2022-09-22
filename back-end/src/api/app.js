@@ -7,7 +7,6 @@ const loginRoute = require('../routes/login.route');
 const productsRoute = require('../routes/products.route');
 
 const registerRoute = require('../routes/register.route');
-
 const middlewareError = require('../middlewares/errors');
 
 const app = express();

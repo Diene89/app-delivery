@@ -31,12 +31,13 @@ const registerService = {
 
     const cryptoPassword = md5(password);
 
-    await db.user.create({
+    const userCreated = await db.user.create({
       name,
       email,
       password: cryptoPassword,
       role: 'customer',
     });
+    return userCreated;
   },
 };
 
