@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
   createToken(data) {
-    const token = jwt.sign(data, process.env.JWT_SECRET);
+    const token = jwt.sign(data, 'secret_key');
 
     return token;
   },
@@ -17,7 +17,7 @@ module.exports = {
     }
 
     try {
-      const data = jwt.verify(token, process.env.JWT_SECRET);
+      const data = jwt.verify(token, 'secret_key');
 
       return data;
     } catch (e) {
