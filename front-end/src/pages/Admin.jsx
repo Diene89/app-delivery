@@ -7,10 +7,10 @@ function Admin() {
   const [userPassword, setUserPassword] = useState('');
   const [userRole, setUserRole] = useState('Cliente');
   const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  function test() {
-    console.log(userName, userEmail, userPassword, userRole);
-  }
+  const [errorMsgEmail, setErrorMsgEmail] = useState(false);
+  const [errorMsgNome, setErrorMsgNome] = useState(false);
+  const [errorMsgPassword, setErrorMsgPassword] = useState(false);
+  const [errorMsgUserExist, setErrorMsgUserExist] = useState(false);
 
   function validateFields() {
     const nameMinLength = 12;
@@ -26,6 +26,28 @@ function Admin() {
       checkPassword: passwordLengthValidation,
       toggleBtn: (emailValidation && nameLengthValidation && passwordLengthValidation),
     };
+  }
+
+  async function validateRegister() {
+    const { checkName, checkEmail, checkPassword } = validateFields();
+
+    const checkInfo = checkName && checkEmail && checkPassword;
+
+    if (!checkInfo) {
+      setErrorMsgNome(checkName);
+      setErrorMsgEmail(checkEmail);
+      setErrorMsgPassword(checkPassword);
+
+      return;
+    }
+
+    const userInfo = await requestRegister(
+      { name: userName, email: userEmail, password: userPassword, role: userRole },
+    );
+
+    if (userInfo.message) {
+      setErrorMsgUserExist(true);
+    }
   }
 
   useEffect(() => {
@@ -93,11 +115,34 @@ function Admin() {
           data-testid="admin_manage__button-register"
           type="button"
           disabled={ buttonDisabled }
-          onClick={ () => test() }
+          onClick={ () => validateRegister() }
         >
           <span className="admin-button-span">CADASTRAR</span>
         </button>
       </form>
+
+      <div data-testid="admin_manage__element-invalid-register">
+        { errorMsgNome && (
+          <span>
+            O nome deve ter pelo menos 12 caracteres.
+          </span>
+        ) }
+        { errorMsgEmail && (
+          <span>
+            O deve ter um formato válido. Ex: exemplo@gmail.com
+          </span>
+        ) }
+        { errorMsgPassword && (
+          <span>
+            A senha deve ter pelo menos 6 caracteres.
+          </span>
+        ) }
+        { errorMsgUserExist && (
+          <span>
+            Usuário já cadastrado.
+          </span>
+        ) }
+      </div>
 
     </ContainerAdmin>
   );
