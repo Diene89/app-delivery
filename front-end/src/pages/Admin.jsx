@@ -29,7 +29,23 @@ function Admin() {
     };
   }
 
+  function resetErrors() {
+    setErrorMsgEmail(false);
+    setErrorMsgNome(false);
+    setErrorMsgPassword(false);
+    setErrorMsgUserExist(false);
+  }
+
+  function resetInputs() {
+    setUserEmail('');
+    setUserName('');
+    setUserPassword('');
+  }
+
   async function validateRegister() {
+    resetErrors();
+    resetInputs();
+
     const { checkName, checkEmail, checkPassword } = validateFields();
 
     const checkInfo = checkName && checkEmail && checkPassword;
@@ -43,7 +59,12 @@ function Admin() {
     }
 
     const userInfo = await requestAdmin(
-      { name: userName, email: userEmail, password: userPassword, role: userRole },
+      {
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+        role: userRole === 'Cliente' ? 'customer' : 'seller',
+      },
     );
 
     if (userInfo.message) {
@@ -58,7 +79,32 @@ function Admin() {
 
   return (
     <ContainerAdmin>
-      <h1>Cadastrar novo usuário</h1>
+      <div
+        data-testid="admin_manage__element-invalid-register"
+        className="admin_manage__error_container"
+      >
+        <h1>Cadastrar novo usuário</h1>
+        { errorMsgNome && (
+          <span className="admin_manage__error_span">
+            O nome deve ter pelo menos 12 caracteres.
+          </span>
+        ) }
+        { errorMsgEmail && (
+          <span className="admin_manage__error_span">
+            O deve ter um formato válido. Ex: exemplo@gmail.com
+          </span>
+        ) }
+        { errorMsgPassword && (
+          <span className="admin_manage__error_span">
+            A senha deve ter pelo menos 6 caracteres.
+          </span>
+        ) }
+        { errorMsgUserExist && (
+          <span className="admin_manage__error_span">
+            Usuário já cadastrado.
+          </span>
+        ) }
+      </div>
 
       <form className="formAdmin">
         <div className="admin-container">
@@ -70,6 +116,7 @@ function Admin() {
             placeholder="Nome e Sobrenome"
             onChange={ ({ target }) => setUserName(target.value) }
             type="text"
+            value={ userName }
           />
         </div>
 
@@ -82,6 +129,7 @@ function Admin() {
             placeholder="seu-email@site.com.br"
             onChange={ ({ target }) => setUserEmail(target.value) }
             type="email"
+            value={ userEmail }
           />
         </div>
 
@@ -94,6 +142,7 @@ function Admin() {
             placeholder="**********"
             onChange={ ({ target }) => setUserPassword(target.value) }
             type="password"
+            value={ userPassword }
           />
         </div>
 
@@ -121,29 +170,6 @@ function Admin() {
           <span className="admin-button-span">CADASTRAR</span>
         </button>
       </form>
-
-      <div data-testid="admin_manage__element-invalid-register">
-        { errorMsgNome && (
-          <span>
-            O nome deve ter pelo menos 12 caracteres.
-          </span>
-        ) }
-        { errorMsgEmail && (
-          <span>
-            O deve ter um formato válido. Ex: exemplo@gmail.com
-          </span>
-        ) }
-        { errorMsgPassword && (
-          <span>
-            A senha deve ter pelo menos 6 caracteres.
-          </span>
-        ) }
-        { errorMsgUserExist && (
-          <span>
-            Usuário já cadastrado.
-          </span>
-        ) }
-      </div>
 
     </ContainerAdmin>
   );
