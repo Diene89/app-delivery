@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 const NavbarContainer = styled.div`
-  height: 80px;
   background: green;
   width: 100vw;
   display: flex;
   justify-content: space-between;
   position: relative;
-    top:0;
-    left: 0;
+  top:0;
+  left: 0;
+  height: 80px;
+  width: 100vw;
 
   ul {
     display: flex;
