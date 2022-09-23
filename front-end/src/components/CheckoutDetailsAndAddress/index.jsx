@@ -1,5 +1,5 @@
+import CheckoutSelect from '../CheckoutDetailsSelect';
 import ContainerDetailsAndAddress from './style';
-import selectArrow from '../../assets/images/select-arrow.png';
 
 function CheckoutDetailsAndAddress() {
   const mockedSellers = ['Denis', 'Didi', 'Tiemi', 'Alexandre', 'Matheus'];
@@ -13,18 +13,7 @@ function CheckoutDetailsAndAddress() {
           <div className="checkout-details-option">
             <span className="checkout-details-subtitle">P. Vendedora Responsável:</span>
 
-            <select
-              className="checkout-detailts-input"
-              data-testid="customer_checkout__select-seller"
-            >
-              <option value="selecione" selected disabled>Selecione</option>
-
-              {mockedSellers.map((name, index) => {
-                const keyId = `${name}__${index}`;
-
-                return <option key={ keyId } value={ name }>{name}</option>;
-              })}
-            </select>
+            <CheckoutSelect sellers={ mockedSellers } />
           </div>
 
           <div className="checkout-details-option">
