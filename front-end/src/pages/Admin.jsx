@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ContainerAdmin from '../assets/styles/Admin';
-import requestAdmin from '../api/requestAdmin';
+import requestAdmin, { getUsers, deleteUsers } from '../api/requestAdmin';
 
 function Admin() {
   const [userName, setUserName] = useState('');
@@ -12,6 +12,7 @@ function Admin() {
   const [errorMsgNome, setErrorMsgNome] = useState(false);
   const [errorMsgPassword, setErrorMsgPassword] = useState(false);
   const [errorMsgUserExist, setErrorMsgUserExist] = useState(false);
+  const [arrayUsers, setArrayUsers] = useState();
 
   function validateFields() {
     const nameMinLength = 12;
@@ -72,10 +73,24 @@ function Admin() {
     }
   }
 
+  async function fetchUser(id) {
+    await deleteUsers(id);
+    console.log(id);
+  }
+
+  async function fetchUsers() {
+    const users = await getUsers();
+    setArrayUsers(users);
+  }
+
   useEffect(() => {
     const { toggleBtn } = validateFields();
     setButtonDisabled(!toggleBtn);
   }, [userName, userEmail, userPassword]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <ContainerAdmin>
@@ -171,6 +186,45 @@ function Admin() {
         </button>
       </form>
 
+      <div>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Excluir</th>
+          </tr>
+          {
+            arrayUsers
+            && arrayUsers.map((user) => (
+              <tr key={ user.id }>
+                <td>
+                  { user.id }
+                </td>
+                <td>
+                  { user.name }
+                </td>
+                <td>
+                  { user.email }
+                </td>
+                <td>
+                  { user.role }
+                </td>
+                <td>
+                  <button
+                    className="admin-delete"
+                    type="button"
+                    onClick={ () => fetchUser(user.id) }
+                  >
+                    <span className="admin-button-span-delete">EXCLUIR</span>
+                  </button>
+                </td>
+              </tr>
+            ))
+          }
+        </table>
+      </div>
     </ContainerAdmin>
   );
 }
