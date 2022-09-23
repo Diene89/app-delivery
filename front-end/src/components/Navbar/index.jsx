@@ -1,6 +1,29 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavbarContainer from './style';
 
 function Navbar() {
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+
+  const userData = async () => {
+    const userInfo = await JSON.parse(localStorage.getItem('user'));
+    if (userInfo) setUser(userInfo);
+  };
+
+  useEffect(() => {
+    userData();
+  }, []);
+
+  function navigateTo(path) {
+    navigate(path);
+  }
+
+  const logoutUser = () => {
+    localStorage.setItem('user', JSON.stringify({}));
+    navigateTo('/');
+  };
+
   return (
     <NavbarContainer>
       <ul>
@@ -9,10 +32,17 @@ function Navbar() {
         <li
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          NOME DO USUARIO
+          { user.name }
         </li>
-        <li data-testid="customer_products__element-navbar-link-logout">SAIR</li>
       </ul>
+      <button
+        type="button"
+        className="logout-button"
+        onClick={ logoutUser }
+        data-testid="customer_products__element-navbar-link-logout"
+      >
+        SAIR
+      </button>
     </NavbarContainer>
   );
 }
