@@ -28,7 +28,16 @@ function Login() {
     const response = await requestLogin({ email, password });
     if (response.message) {
       setLoginError(true);
-    } else {
+    }
+    if (response.token) {
+      const { name, role, token } = response;
+      const objUser = {
+        name,
+        email: response.email,
+        role,
+        token,
+      };
+      localStorage.setItem('user', JSON.stringify(objUser));
       navigateTo('/customer/products');
     }
   };
