@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ContainerAdmin from '../assets/styles/Admin';
+import requestAdmin from '../api/requestAdmin';
 
 function Admin() {
   const [userName, setUserName] = useState('');
@@ -41,7 +42,7 @@ function Admin() {
       return;
     }
 
-    const userInfo = await requestRegister(
+    const userInfo = await requestAdmin(
       { name: userName, email: userEmail, password: userPassword, role: userRole },
     );
 
