@@ -38,7 +38,11 @@ function Login() {
         token,
       };
       localStorage.setItem('user', JSON.stringify(objUser));
-      navigateTo('/customer/products');
+      if (role !== 'administrator') {
+        navigateTo('/customer/products');
+      } else {
+        navigateTo('/admin/manage');
+      }
     }
   };
 
