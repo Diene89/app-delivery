@@ -39,9 +39,7 @@ function Products() {
                   count={ index + 1 }
                   key={ index }
                   name={ name }
-                  price={
-                    price.toString().replace('.', ',')
-                  }
+                  price={ price }
                   urlImage={ urlImage }
                 />
               )) : ''
