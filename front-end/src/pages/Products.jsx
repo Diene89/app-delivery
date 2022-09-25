@@ -7,6 +7,7 @@ import ProductsCard from '../components/ProductsCard';
 
 function Products() {
   const [products, setProducts] = useState([]);
+
   const navigate = useNavigate();
 
   const getProducts = async () => {
@@ -20,12 +21,44 @@ function Products() {
 
   useEffect(() => {
     getProducts();
+    localStorage.setItem('userCart', JSON.stringify([]));
     async function userData() {
       const userInfo = await JSON.parse(localStorage.getItem('user'));
       if (!userInfo.token) navigateTo('/login');
     }
     userData();
   }, []);
+
+  const userCartData = async (objData) => {
+    const { name, price, urlImage, quantity } = objData;
+    const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
+    const newitem = {
+      name,
+      price,
+      urlImage,
+      quantity,
+    };
+    const checkData = cartInfo.filter((element) => element.name === name).length;
+    if (checkData === 0) {
+      localStorage.setItem('userCart', JSON.stringify([
+        ...cartInfo,
+        {
+          ...newitem,
+        },
+      ]));
+    } else {
+      const newCartData = cartInfo.map((item) => (
+        item.name === name ? { name, price, urlImage, quantity } : item
+      ));
+      localStorage.setItem('userCart', JSON.stringify(newCartData));
+    }
+
+    if (quantity === 0) {
+      const cartQuantity = await JSON.parse(localStorage.getItem('userCart'));
+      const checkQuantity = cartQuantity.filter((cartItem) => cartItem.quantity !== 0);
+      localStorage.setItem('userCart', JSON.stringify(checkQuantity));
+    }
+  };
 
   return (
     <>
@@ -41,10 +74,18 @@ function Products() {
                   name={ name }
                   price={ price }
                   urlImage={ urlImage }
+                  userCartData={ userCartData }
                 />
               )) : ''
           }
         </div>
+        <button
+          type="button"
+          data-testid="customer_products__checkout-bottom-value"
+          className="total-button"
+        >
+          0
+        </button>
       </ContainerProducts>
     </>
   );
