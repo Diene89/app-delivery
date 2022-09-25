@@ -6,8 +6,7 @@ const NavbarContainer = styled.div`
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 80px;
-  position: fixed;
+  position: relative;
     top:0;
     left: 0;
 
