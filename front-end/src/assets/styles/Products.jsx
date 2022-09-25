@@ -6,6 +6,7 @@ const ContainerProducts = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 290px;
 
     .products-section {
       max-width: 1446px;
