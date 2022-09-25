@@ -12,7 +12,7 @@ function ProductsCard({ price, urlImage, name, count }) {
       <h1
         data-testid={ `customer_products__element-card-price-${count}` }
       >
-        { price }
+        { Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
       </h1>
       <h2
         data-testid={ `customer_products__element-card-title-${count}` }
