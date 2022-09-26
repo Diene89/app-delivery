@@ -9,11 +9,11 @@ async function requestCompleteCheckout(userData, userToken) {
       },
     });
 
+    const { status } = response;
+
     const data = await response.json();
 
-    console.log('sou o finalizar compra', data);
-
-    return data;
+    return { data, status };
   } catch (error) {
     console.log('Algo deu errado ao tentar finalizar a compra', error);
   }
