@@ -12,4 +12,10 @@ module.exports = {
     const salesBySeller = await sellerService.getSaleByIdOrder(id);
     return res.status(200).json(salesBySeller);
   },
+
+  async getAllSellers(_req, res) {
+    const sellers = await sellerService.getAllSellers();
+    return res.status(200).json(sellers);
+  },
+
 };
