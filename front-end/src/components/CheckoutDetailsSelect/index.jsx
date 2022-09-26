@@ -10,10 +10,10 @@ function CheckoutSelect({ sellers }) {
     >
       <option value="selecione" selected disabled>Selecione</option>
 
-      {sellers.map((name, index) => {
-        const keyId = `${name}__${index}`;
+      {sellers.map(({ name, id }, index) => {
+        const keyId = `${name}__${id}__${index}`;
 
-        return <option key={ keyId } value={ name }>{name}</option>;
+        return <option key={ keyId } value={ id }>{name}</option>;
       })}
     </ContainerCheckoutSelect>
   );
