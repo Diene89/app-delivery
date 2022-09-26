@@ -30,7 +30,7 @@ module.exports = {
 
     try {
       const newSale = await sales.create(data);
-  
+
     const arrayProduct = productCart.map((item) => ({
         saleId: newSale.dataValues.id, productId: item.id, quantity: item.quantity,
     }));
