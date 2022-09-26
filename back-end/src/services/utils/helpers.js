@@ -69,10 +69,23 @@ const checkPassword = async (dbPassword, bodyPassword) => {
   }
 };
 
+const checkIfExistsById = async (id) => {
+  const user = await db.user.findOne({ where: { id } });
+
+  if (!user) {
+    const error = new Error('Not found');
+    error.name = 'NotFoundError';
+    throw error;
+  }
+  
+  return user; 
+};
+
 module.exports = {
   validateUserBody,
   checkIfExists,
   checkPassword,
   validateAdminUserBody,
   checkIfUser,
+  checkIfExistsById,
 };

@@ -1,7 +1,8 @@
 const md5 = require('md5');
 const { Op } = require('sequelize');
-const { validateAdminUserBody, checkIfUser } = require('./utils/helpers');
+const { validateAdminUserBody, checkIfUser, checkIfExistsById } = require('./utils/helpers');
 const db = require('../database/models');
+const jwtService = require('./utils/jwtService');
 
 module.exports = {
   async create(data) {
@@ -29,5 +30,19 @@ module.exports = {
     if (!users) return { message: 'Nenhum usuário encontrado' };
 
     return users;
+  },
+
+  async deleteUser(id, token) {
+    if (!token) return 'token expirado ou inválido';
+
+    const user = jwtService.decodeToken(token);
+    const isAdmin = await db.user.findByPk(user.id);
+    if (isAdmin.role !== 'administrator') return 'este usuario não é um Admin';
+
+    await checkIfExistsById(id);
+
+    await db.user.destroy({ where: { id } });
+
+    return 'usuário deletado com sucesso!';
   },
 };

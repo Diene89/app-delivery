@@ -13,6 +13,7 @@ const middlewareError = require('../middlewares/errors');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
