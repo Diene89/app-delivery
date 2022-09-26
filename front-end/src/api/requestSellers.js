@@ -9,8 +9,6 @@ async function requestSellers() {
 
     const data = await response.json();
 
-    console.log('sou os sellers', data);
-
     return data;
   } catch (error) {
     console.log('Algo deu errado ao tentar buscar todas pessoas vendedoras', error);
