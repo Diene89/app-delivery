@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import requestCompleteCheckout from '../../api/requestCompleteCheckout';
 import requestSellers from '../../api/requestSellers';
 import CheckoutSelect from '../CheckoutDetailsSelect';
 import ContainerDetailsAndAddress from './style';
 
 function CheckoutDetailsAndAddress() {
-  const mockedSellers = [
-    { name: 'Denis', id: 1 },
-    { name: 'Didi', id: 2 },
-    { name: 'Tiemi', id: 3 },
-    { name: 'Alexandre', id: 4 },
-    { name: 'Matheus', id: 5 },
-  ];
-  const mockedTotalPrice = 28.46;
+  const totalPrice = 28.46;
 
   const [sellersInfos, setSellersInfo] = useState([]);
-  const [sellerSelected, setSellerSelected] = useState({});
-  const [userAddress, setUserAddress] = useState('');
-  const [userAddressNumber, setUserAddressNumber] = useState('');
+  const [sellerId, setSellerId] = useState(null);
+  const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [deliveryNumber, setDeliveryNumber] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
-      const sellers = await requestSellers() || mockedSellers;
+      const sellers = await requestSellers() || [];
 
       setSellersInfo(sellers);
     })();
@@ -30,36 +25,41 @@ function CheckoutDetailsAndAddress() {
   const handleSeller = (target) => {
     const seller = target.value;
 
-    setSellerSelected(seller);
+    setSellerId(seller);
   };
 
   const handleAddress = (target) => {
     const address = target.value;
 
-    setUserAddress(address);
+    setDeliveryAddress(address);
   };
 
   const handleAddressNumber = (target) => {
     const addressNumber = target.value;
 
-    setUserAddressNumber(addressNumber);
+    setDeliveryNumber(addressNumber);
   };
 
   const handleCompleteCheckout = async () => {
-    const { shopCart, token } = localStorage.getItem('user');
-    const { id: sellerId } = sellerSelected;
+    const statusSuccessCode = 201;
+    const { shopCart: productCart, token } = JSON.parse(localStorage.getItem('user'));
 
     const userData = {
       sellerId,
-      mockedTotalPrice,
-      userAddress,
-      userAddressNumber,
-      shopCart,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      productCart,
     };
 
-    const checkCheckout = requestCompleteCheckout(userData, token);
+    const {
+      status,
+      data: { id: salleId },
+    } = await requestCompleteCheckout(userData, token);
 
-    return checkCheckout;
+    if (status === statusSuccessCode) {
+      return navigate(`/customer/orders/${salleId}`);
+    }
   };
 
   return (
@@ -82,7 +82,7 @@ function CheckoutDetailsAndAddress() {
               data-testid="customer_checkout__input-address"
               type="text"
               placeholder="Digite seu endereço"
-              onChange={ (target) => handleAddress(target) }
+              onChange={ ({ target }) => handleAddress(target) }
             />
           </div>
 
@@ -94,7 +94,7 @@ function CheckoutDetailsAndAddress() {
               data-testid="customer_checkout__input-addressNumber"
               type="text"
               placeholder="Número do seu endereço"
-              onChange={ (target) => handleAddressNumber(target) }
+              onChange={ ({ target }) => handleAddressNumber(target) }
             />
           </div>
         </div>
