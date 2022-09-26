@@ -1,6 +1,6 @@
 require('dotenv/config');
 
-const key = require("fs").readFileSync("jwt.evaluation.key", { encoding: "utf-8" });
+const key = require('fs').readFileSync('jwt.evaluation.key', { encoding: 'utf-8' });
 
 const jwt = require('jsonwebtoken');
 
