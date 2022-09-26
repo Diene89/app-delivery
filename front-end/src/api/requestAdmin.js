@@ -35,10 +35,14 @@ export async function getUsers(token) {
 
 export async function deleteUsers(id, token) {
   try {
-    await fetch(`${endpoint}/${id}`, {
+    console.log(id);
+    const message = await fetch(`${endpoint}/${id}`, {
       method: 'DELETE',
-      Authorization: token,
+      headers: {
+        Authorization: token,
+      },
     });
+    return message.json();
   } catch (error) {
     console.log('Erro ao deletar usuário', error);
   }

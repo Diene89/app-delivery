@@ -87,6 +87,7 @@ function Admin() {
   async function fetchUser(id) {
     const { token } = JSON.parse(localStorage.getItem('user'));
     await deleteUsers(id, token);
+    await fetchUsers();
   }
 
   useEffect(() => {
