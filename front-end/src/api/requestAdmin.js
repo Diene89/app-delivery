@@ -1,12 +1,13 @@
 const endpoint = 'http://localhost:3001/admin/manage';
 
-async function requestAdmin(userData) {
+async function requestAdmin(userData, token) {
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
       body: JSON.stringify(userData),
       headers: {
         'Content-Type': 'application/json',
+        Authorization: token,
       },
     });
 
@@ -18,9 +19,13 @@ async function requestAdmin(userData) {
   }
 }
 
-export async function getUsers() {
+export async function getUsers(token) {
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint, {
+      headers: {
+        Authorization: token,
+      },
+    });
     const data = response.json();
     return data;
   } catch (error) {
@@ -28,10 +33,11 @@ export async function getUsers() {
   }
 }
 
-export async function deleteUsers(id) {
+export async function deleteUsers(id, token) {
   try {
     await fetch(`${endpoint}/${id}`, {
       method: 'DELETE',
+      Authorization: token,
     });
   } catch (error) {
     console.log('Erro ao deletar usuário', error);

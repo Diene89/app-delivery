@@ -43,6 +43,12 @@ function Admin() {
     setUserPassword('');
   }
 
+  async function fetchUsers() {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    const users = await getUsers(token);
+    setArrayUsers(users);
+  }
+
   async function validateRegister() {
     resetErrors();
     resetInputs();
@@ -59,6 +65,8 @@ function Admin() {
       return;
     }
 
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
     const userInfo = await requestAdmin(
       {
         name: userName,
@@ -66,27 +74,25 @@ function Admin() {
         password: userPassword,
         role: userRole === 'Cliente' ? 'customer' : 'seller',
       },
+      token,
     );
 
     if (userInfo.message) {
       setErrorMsgUserExist(true);
     }
+
+    await fetchUsers();
   }
 
   async function fetchUser(id) {
-    await deleteUsers(id);
-    console.log(id);
-  }
-
-  async function fetchUsers() {
-    const users = await getUsers();
-    setArrayUsers(users);
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    await deleteUsers(id, token);
   }
 
   useEffect(() => {
     const { toggleBtn } = validateFields();
     setButtonDisabled(!toggleBtn);
-  }, [userName, userEmail, userPassword]);
+  }, [userName, userEmail, userPassword, userRole]);
 
   useEffect(() => {
     fetchUsers();
@@ -160,20 +166,15 @@ function Admin() {
             value={ userPassword }
           />
         </div>
-
-        <div className="admin-container">
-          <span className="admin-input-span">Tipo</span>
-
-          <select
-            className="admin-input"
-            data-testid="admin_manage__select-role"
-            onChange={ ({ target }) => setUserRole(target.value) }
-            value={ userRole }
-          >
-            <option>Cliente</option>
-            <option>Vendedor</option>
-          </select>
-        </div>
+        <select
+          className="admin-input"
+          data-testid="admin_manage__select-role"
+          onChange={ ({ target }) => setUserRole(target.value) }
+          value={ userRole }
+        >
+          <option>Cliente</option>
+          <option>Vendedor</option>
+        </select>
 
         <button
           className="admin-button"
