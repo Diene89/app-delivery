@@ -5,7 +5,13 @@ const db = require('../database/models');
 const jwtService = require('./utils/jwtService');
 
 module.exports = {
-  async create(data) {
+  async create(data, token) {
+    if (!token) return 'token expirado ou inválido';
+
+    const adminUser = jwtService.decodeToken(token);
+    const isAdmin = await db.user.findByPk(adminUser.id);
+    if (isAdmin.role !== 'administrator') return 'este usuario não é um Admin';
+  
     const user = validateAdminUserBody(data);
 
     await checkIfUser(data.email);
@@ -22,10 +28,19 @@ module.exports = {
     return userCreated;
   },
 
-  async getAllUsers() {
-    const users = await db.user.findAll({ where: { role: {
-      [Op.not]: 'administrator',
-    } } });
+  async getAllUsers(token) {
+    if (!token) return 'token expirado ou inválido';
+
+    const adminUser = jwtService.decodeToken(token);
+    const isAdmin = await db.user.findByPk(adminUser.id);
+    if (isAdmin.role !== 'administrator') return 'este usuario não é um Admin';
+
+    const users = await db.user.findAll({
+      where: { 
+        role: { [Op.not]: 'administrator' } 
+      },
+      attributes: { exclude: 'id' }
+  });
 
     if (!users) return { message: 'Nenhum usuário encontrado' };
 
@@ -35,8 +50,8 @@ module.exports = {
   async deleteUser(id, token) {
     if (!token) return 'token expirado ou inválido';
 
-    const user = jwtService.decodeToken(token);
-    const isAdmin = await db.user.findByPk(user.id);
+    const adminUser = jwtService.decodeToken(token);
+    const isAdmin = await db.user.findByPk(adminUser.id);
     if (isAdmin.role !== 'administrator') return 'este usuario não é um Admin';
 
     await checkIfExistsById(id);

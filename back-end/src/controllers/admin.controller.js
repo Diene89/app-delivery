@@ -2,13 +2,15 @@ const adminService = require('../services/admin.service');
 
 module.exports = {
   async create(req, res) {
-    const userCreated = await adminService.create(req.body);
+    const { authorization } = req.headers;
+    const userCreated = await adminService.create(req.body, authorization);
 
     return res.status(201).json(userCreated);
   },
 
   async getAllUsers(req, res) {
-    const users = await adminService.getAllUsers();
+    const { authorization } = req.headers;
+    const users = await adminService.getAllUsers(authorization);
 
     return res.status(200).json(users);
   },
