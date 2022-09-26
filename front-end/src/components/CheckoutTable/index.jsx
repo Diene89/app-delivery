@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import CheckoutTableContainer from './style';
 
-function CheckoutTable({ items }) {
+function CheckoutTable({ items, removeItem }) {
   return (
     <CheckoutTableContainer>
       <thead>
@@ -96,7 +96,15 @@ function CheckoutTable({ items }) {
                 data-testid={ `customer_checkout__element-order-table-remove-${index}` }
                 title="Remover"
               >
-                <button type="button">
+                <button
+                  id={ id }
+                  type="button"
+                  onClick={ ({ target }) => {
+                    const { id: idToRemove } = target;
+
+                    removeItem(idToRemove);
+                  } }
+                >
                   Remover
                 </button>
               </td>
@@ -115,6 +123,7 @@ CheckoutTable.propTypes = {
     quantity: PropTypes.number,
     price: PropTypes.number,
   })).isRequired,
+  removeItem: PropTypes.func.isRequired,
 };
 
 export default CheckoutTable;
