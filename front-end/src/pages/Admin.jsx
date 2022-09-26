@@ -6,7 +6,7 @@ function Admin() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [userRole, setUserRole] = useState('Cliente');
+  const [userRole, setUserRole] = useState('customer');
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [errorMsgEmail, setErrorMsgEmail] = useState(false);
   const [errorMsgNome, setErrorMsgNome] = useState(false);
@@ -72,7 +72,7 @@ function Admin() {
         name: userName,
         email: userEmail,
         password: userPassword,
-        role: userRole === 'Cliente' ? 'customer' : 'seller',
+        role: userRole,
       },
       token,
     );
@@ -173,8 +173,8 @@ function Admin() {
           onChange={ ({ target }) => setUserRole(target.value) }
           value={ userRole }
         >
-          <option>Cliente</option>
-          <option>Vendedor</option>
+          <option value="customer">Cliente</option>
+          <option value="seller">Vendedor</option>
         </select>
 
         <button
@@ -199,22 +199,37 @@ function Admin() {
           </tr>
           {
             arrayUsers
-            && arrayUsers.map((user) => (
+            && arrayUsers.map((user, index) => (
               <tr key={ user.id }>
-                <td>
-                  { user.id }
+                <td
+                  data-testid={
+                    `admin_manage__element-user-table-item-number-${index}`
+                  }
+                >
+                  { index + 1}
                 </td>
-                <td>
+                <td
+                  data-testid={ `admin_manage__element-user-table-name-${index}` }
+                >
                   { user.name }
                 </td>
-                <td>
+                <td
+                  data-testid={ `admin_manage__element-user-table-email-${index}` }
+                >
                   { user.email }
                 </td>
-                <td>
+                <td
+                  data-testid={
+                    `admin_manage__element-user-table-role-${index}`
+                  }
+                >
                   { user.role }
                 </td>
                 <td>
                   <button
+                    data-testid={
+                      `admin_manage__element-user-table-remove-${index}`
+                    }
                     className="admin-delete"
                     type="button"
                     onClick={ () => fetchUser(user.id) }
