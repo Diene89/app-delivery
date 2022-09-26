@@ -5,7 +5,6 @@ module.exports = {
     async checkoutNewSale(req, res) {
         const { authorization } = req.headers;
         const { id } = decodeToken(authorization);
-        console.log(typeof id, 'la vem elaaaaa');
 
         const status = 'Pendente';
         const date = new Date();
