@@ -14,7 +14,6 @@ module.exports = {
       productCart: Joi.array().items({ id: Joi.number().required(),
         name: Joi.string().required(),
         price: Joi.number().required(),
-        urlImage: Joi.string().required(),
         quantity: Joi.number().required(),
       }),
     });
