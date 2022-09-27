@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const db = require('../database/models');
 const jwtService = require('./utils/jwtService');
 
@@ -32,4 +33,16 @@ module.exports = {
 
     return sale;
   },
+
+  async getAllSellers() {
+    const sellers = await db.user.findAll({ where: { role: {
+      [Op.eq]: 'seller',
+    } },
+attributes: { exclude: ['password', 'email', 'role'] } });
+
+    if (!sellers) return { message: 'Nenhuma pessoa vendedora encontrada' };
+
+    return sellers;
+  },
+  
 };
