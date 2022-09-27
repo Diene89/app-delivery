@@ -38,10 +38,14 @@ function Login() {
         token,
       };
       localStorage.setItem('user', JSON.stringify(objUser));
-      if (role !== 'administrator') {
-        navigateTo('/customer/products');
-      } else {
+      if (role === 'administrator') {
         navigateTo('/admin/manage');
+      }
+      if (role === 'seller') {
+        navigateTo('/seller/orders');
+      }
+      if (role === 'customer') {
+        navigateTo('/customer/products');
       }
     }
   };
