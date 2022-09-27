@@ -188,8 +188,8 @@ function Admin() {
         </button>
       </form>
 
-      <div>
-        <table>
+      <table>
+        <thead>
           <tr>
             <th>Item</th>
             <th>Nome</th>
@@ -197,51 +197,50 @@ function Admin() {
             <th>Tipo</th>
             <th>Excluir</th>
           </tr>
+        </thead>
+        <tbody>
           {
             arrayUsers
-            && arrayUsers.map((user, index) => (
-              <tr key={ user.id }>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-item-number-${index}`
-                  }
-                >
-                  { index + 1}
-                </td>
-                <td
-                  data-testid={ `admin_manage__element-user-table-name-${index}` }
-                >
-                  { user.name }
-                </td>
-                <td
-                  data-testid={ `admin_manage__element-user-table-email-${index}` }
-                >
-                  { user.email }
-                </td>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-role-${index}`
-                  }
-                >
-                  { user.role }
-                </td>
-                <td>
-                  <button
+              && arrayUsers.map((user, index) => (
+                <tr key={ user.id }>
+                  <td
                     data-testid={
-                      `admin_manage__element-user-table-remove-${index}`
+                      `admin_manage__element-user-table-item-number-${index}`
                     }
-                    className="admin-delete"
-                    type="button"
-                    onClick={ () => fetchUser(user.id) }
                   >
-                    <span className="admin-button-span-delete">EXCLUIR</span>
-                  </button>
-                </td>
-              </tr>
-            ))
+                    { index + 1}
+                  </td>
+                  <td
+                    data-testid={ `admin_manage__element-user-table-name-${index}` }
+                  >
+                    { user.name }
+                  </td>
+                  <td
+                    data-testid={ `admin_manage__element-user-table-email-${index}` }
+                  >
+                    { user.email }
+                  </td>
+                  <td
+                    data-testid={ `admin_manage__element-user-table-role-${index}` }
+                  >
+                    { user.role }
+                  </td>
+                  <td>
+                    <button
+                      data-testid={ `admin_manage__element-user-table-remove-${index}` }
+                      className="admin-delete"
+                      type="button"
+                      onClick={ () => fetchUser(user.id) }
+                    >
+                      <span className="admin-button-span-delete">EXCLUIR</span>
+                    </button>
+                  </td>
+                </tr>
+              ))
           }
-        </table>
-      </div>
+        </tbody>
+      </table>
+
     </ContainerAdmin>
   );
 }
