@@ -125,11 +125,14 @@ function Products() {
         </div>
         <button
           type="button"
-          data-testid="customer_products__checkout-bottom-value"
           className="total-button"
+          data-testid="customer_products__button-cart"
           onClick={ () => navigateTo('/customer/checkout') }
+          disabled={ total === 0 }
         >
-          { total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+          <span data-testid="customer_products__checkout-bottom-value">
+            { total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+          </span>
         </button>
       </ContainerProducts>
     </>
