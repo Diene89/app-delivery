@@ -7,6 +7,7 @@ import ProductsCard from '../components/ProductsCard';
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const navigate = useNavigate();
 
@@ -18,6 +19,15 @@ function Products() {
   function navigateTo(path) {
     navigate(path);
   }
+
+  const totalPricee = async () => {
+    const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
+    let tempTotal = 0;
+    cartInfo.forEach((item) => {
+      tempTotal += (item.quantity * item.price);
+    });
+    setTotal(tempTotal);
+  };
 
   useEffect(() => {
     getProducts();
@@ -46,17 +56,20 @@ function Products() {
           ...newitem,
         },
       ]));
+      totalPricee();
     } else {
       const newCartData = cartInfo.map((item) => (
         item.name === name ? { name, price, urlImage, quantity } : item
       ));
       localStorage.setItem('userCart', JSON.stringify(newCartData));
+      totalPricee();
     }
 
     if (quantity === 0) {
       const cartQuantity = await JSON.parse(localStorage.getItem('userCart'));
       const checkQuantity = cartQuantity.filter((cartItem) => cartItem.quantity !== 0);
       localStorage.setItem('userCart', JSON.stringify(checkQuantity));
+      totalPricee();
     }
   };
 
@@ -83,8 +96,9 @@ function Products() {
           type="button"
           data-testid="customer_products__checkout-bottom-value"
           className="total-button"
+          onClick={ () => navigateTo('/customer/checkout') }
         >
-          0
+          { total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
         </button>
       </ContainerProducts>
     </>
