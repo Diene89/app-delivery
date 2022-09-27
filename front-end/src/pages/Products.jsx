@@ -62,6 +62,7 @@ function Products() {
     if (checkData === 0) {
       localStorage.setItem('user', JSON.stringify(
         {
+          id: userInfo.id,
           name: userInfo.name,
           email: userInfo.email,
           token: userInfo.token,
@@ -76,6 +77,7 @@ function Products() {
       ));
       localStorage.setItem('user', JSON.stringify(
         {
+          id: userInfo.id,
           name: userInfo.name,
           email: userInfo.email,
           token: userInfo.token,
@@ -92,6 +94,7 @@ function Products() {
         .filter((cartItem) => cartItem.quantity !== 0);
       localStorage.setItem('user', JSON.stringify(
         {
+          id: userInfo.id,
           name: userInfo.name,
           email: userInfo.email,
           token: userInfo.token,
