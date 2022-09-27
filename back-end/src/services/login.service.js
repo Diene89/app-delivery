@@ -13,6 +13,6 @@ module.exports = {
 
     const token = jwtService.createToken({ id, ...user });
 
-    return { name, email, role, token };
+    return { id, name, email, role, token };
   },
 };
