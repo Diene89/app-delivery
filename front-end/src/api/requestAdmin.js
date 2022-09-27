@@ -35,7 +35,6 @@ export async function getUsers(token) {
 
 export async function deleteUsers(id, token) {
   try {
-    console.log(id);
     const message = await fetch(`${endpoint}/${id}`, {
       method: 'DELETE',
       headers: {
