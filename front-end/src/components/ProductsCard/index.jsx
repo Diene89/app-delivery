@@ -8,6 +8,7 @@ function ProductsCard({
   name,
   count,
   userCartData,
+  id,
 }) {
   const [quantity, setQuantity] = useState(0);
 
@@ -22,7 +23,7 @@ function ProductsCard({
   };
 
   useEffect(() => {
-    const obj = { price, name, quantity };
+    const obj = { price, name, quantity, id };
     userCartData(obj);
   }, [quantity]);
 
@@ -73,6 +74,7 @@ ProductsCard.propTypes = {
   urlImage: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
   userCartData: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default ProductsCard;

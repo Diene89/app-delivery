@@ -39,7 +39,7 @@ function Products() {
   }, []);
 
   const userCartData = async (objData) => {
-    const { name, price, quantity } = objData;
+    const { name, price, quantity, id } = objData;
     const userInfo = await JSON.parse(localStorage.getItem('user'));
     // const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
     const newitem = {
@@ -53,6 +53,7 @@ function Products() {
           name,
           price,
           quantity,
+          id,
         },
       ],
     };
@@ -109,13 +110,14 @@ function Products() {
         <div className="products-section">
           {
             products.length > 0
-              ? products.map(({ name, price, urlImage }, index) => (
+              ? products.map(({ name, price, urlImage, id }, index) => (
                 <ProductsCard
                   count={ index + 1 }
                   key={ index }
                   name={ name }
                   price={ price }
                   urlImage={ urlImage }
+                  id={ id }
                   userCartData={ userCartData }
                 />
               )) : ''
