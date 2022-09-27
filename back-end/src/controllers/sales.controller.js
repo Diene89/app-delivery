@@ -5,6 +5,7 @@ module.exports = {
     async checkoutNewSale(req, res) {
         const { authorization } = req.headers;
         const { id } = decodeToken(authorization);
+        await salesService.validateRegisterBody(req.body);
 
         const status = 'Pendente';
         const date = new Date();
