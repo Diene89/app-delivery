@@ -9,9 +9,9 @@ function CheckoutOrders() {
   useEffect(() => {
     const storagedCart = JSON.parse(localStorage.getItem('user'));
 
-    if (storagedCart.shopCart) {
-      const { shopCart } = storagedCart;
-      setUserShopCart([...shopCart]);
+    if (storagedCart.productCart) {
+      const { productCart } = storagedCart;
+      setUserShopCart([...productCart]);
     }
   }, []);
 

@@ -33,13 +33,13 @@ function CheckoutTable({ items, removeItem }) {
       </thead>
 
       <tbody className="checkout-table-body">
-        {items.map(({ id, description, quantity, price }, index) => {
+        {items.map(({ id, name, quantity, price }, index) => {
           const subtotal = price * quantity;
 
           return (
             <tr
               className="checkout-table-body-tr"
-              key={ `${description}__${id}__${index}` }
+              key={ `${name}__${id}__${index}` }
             >
               <td
                 className="checkout-table-body-td-item"
@@ -52,11 +52,11 @@ function CheckoutTable({ items, removeItem }) {
               </td>
 
               <td
-                className="checkout-table-body-td-description"
+                className="checkout-table-body-td-name"
                 data-testid={ `customer_checkout__element-order-table-name-${index}` }
-                title={ description }
+                title={ name }
               >
-                {description}
+                {name}
               </td>
 
               <td
@@ -119,7 +119,7 @@ function CheckoutTable({ items, removeItem }) {
 CheckoutTable.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    description: PropTypes.string,
+    name: PropTypes.string,
     quantity: PropTypes.number,
     price: PropTypes.number,
   })).isRequired,
