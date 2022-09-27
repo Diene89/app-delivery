@@ -23,6 +23,15 @@ function ProductsCard({
   };
 
   useEffect(() => {
+    const { productCart } = JSON.parse(localStorage.getItem('user'));
+    const findItem = productCart.find((item) => Number(item.id) === id);
+
+    if (findItem) {
+      setQuantity(findItem.quantity);
+    }
+  }, []);
+
+  useEffect(() => {
     const obj = { price, name, quantity, id };
     userCartData(obj);
   }, [quantity]);
