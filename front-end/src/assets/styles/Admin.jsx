@@ -62,6 +62,20 @@ const ContainerAdmin = styled.div`
     font-size: small;
     color: red;
   }
+
+  .admin-delete {
+    width: 110px;
+    height: 35px;
+    background: #036B52;
+    border-radius: 8px;
+    border: none;
+    color: #F2FFFC;
+  }
+
+  .admin-delete:hover {
+    background: #01362a;
+  }
+
 `;
 
 export default ContainerAdmin;

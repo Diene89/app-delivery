@@ -188,7 +188,8 @@ function Admin() {
         </button>
       </form>
 
-      <table>
+      <h1>Lista de usuários</h1>
+      <table className="admin_manage__table_users">
         <thead>
           <tr>
             <th>Item</th>
