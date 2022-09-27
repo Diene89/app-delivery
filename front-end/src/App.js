@@ -6,6 +6,7 @@ import './App.css';
 import Products from './pages/Products';
 import Admin from './pages/Admin';
 import SellerOrders from './pages/SellerOrders';
+import SellerOrderDetails from './pages/SellerOrderDetails';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/customer/products" element={ <Products /> } />
         <Route exact path="/admin/manage" element={ <Admin /> } />
         <Route exact path="/seller/orders/" element={ <SellerOrders /> } />
+        <Route exact path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
       </Routes>
       <GlobalStyle />
     </>

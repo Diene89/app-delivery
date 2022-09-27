@@ -8,7 +8,6 @@ function SellerOrders() {
   async function getOrders() {
     const { token } = JSON.parse(localStorage.getItem('user'));
     const arrayOrders = await getSellerOrders(token);
-    console.log(arrayOrders);
     setOrders(arrayOrders);
   }
 
