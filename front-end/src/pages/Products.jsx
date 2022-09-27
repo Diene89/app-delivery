@@ -20,7 +20,7 @@ function Products() {
     navigate(path);
   }
 
-  const totalPricee = async () => {
+  const totalPrice = async () => {
     const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
     let tempTotal = 0;
     cartInfo.forEach((item) => {
@@ -31,7 +31,6 @@ function Products() {
 
   useEffect(() => {
     getProducts();
-    localStorage.setItem('userCart', JSON.stringify([]));
     async function userData() {
       const userInfo = await JSON.parse(localStorage.getItem('user'));
       if (!userInfo.token) navigateTo('/login');
@@ -40,36 +39,71 @@ function Products() {
   }, []);
 
   const userCartData = async (objData) => {
-    const { name, price, urlImage, quantity } = objData;
-    const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
+    const { name, price, quantity } = objData;
+    const userInfo = await JSON.parse(localStorage.getItem('user'));
+    // const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
     const newitem = {
-      name,
-      price,
-      urlImage,
-      quantity,
-    };
-    const checkData = cartInfo.filter((element) => element.name === name).length;
-    if (checkData === 0) {
-      localStorage.setItem('userCart', JSON.stringify([
-        ...cartInfo,
+      name: userInfo.name,
+      email: userInfo.email,
+      token: userInfo.token,
+      role: userInfo.role,
+      productCart: [
+        ...userInfo.productCart,
         {
-          ...newitem,
+          name,
+          price,
+          quantity,
         },
-      ]));
-      totalPricee();
-    } else {
-      const newCartData = cartInfo.map((item) => (
-        item.name === name ? { name, price, urlImage, quantity } : item
+      ],
+    };
+    const checkData = userInfo.productCart
+      .filter((element) => element.name === name).length;
+    if (checkData === 0) {
+      localStorage.setItem('user', JSON.stringify(
+        {
+          name: userInfo.name,
+          email: userInfo.email,
+          token: userInfo.token,
+          role: userInfo.role,
+          productCart: [
+            ...userInfo.productCart,
+            {
+              ...newitem.productCart,
+            },
+          ],
+        },
       ));
-      localStorage.setItem('userCart', JSON.stringify(newCartData));
-      totalPricee();
+      totalPrice();
+    } else {
+      const newCartData = userInfo.productCart.map((item) => (
+        item.name === name ? { name, price, quantity } : item
+      ));
+      localStorage.setItem('user', JSON.stringify(
+        {
+          name: userInfo.name,
+          email: userInfo.email,
+          token: userInfo.token,
+          role: userInfo.role,
+          productCart: newCartData,
+        },
+      ));
+      totalPrice();
     }
 
     if (quantity === 0) {
-      const cartQuantity = await JSON.parse(localStorage.getItem('userCart'));
-      const checkQuantity = cartQuantity.filter((cartItem) => cartItem.quantity !== 0);
-      localStorage.setItem('userCart', JSON.stringify(checkQuantity));
-      totalPricee();
+      const cartQuantity = await JSON.parse(localStorage.getItem('user'));
+      const checkQuantity = cartQuantity.productCart
+        .filter((cartItem) => cartItem.quantity !== 0);
+      localStorage.setItem('user', JSON.stringify(
+        {
+          name: userInfo.name,
+          email: userInfo.email,
+          token: userInfo.token,
+          role: userInfo.role,
+          productCart: checkQuantity,
+        },
+      ));
+      totalPrice();
     }
   };
 

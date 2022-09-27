@@ -22,7 +22,7 @@ function ProductsCard({
   };
 
   useEffect(() => {
-    const obj = { price, name, urlImage, quantity };
+    const obj = { price, name, quantity };
     userCartData(obj);
   }, [quantity]);
 
