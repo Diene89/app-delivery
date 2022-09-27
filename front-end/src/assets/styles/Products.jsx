@@ -11,7 +11,7 @@ const ContainerProducts = styled.div`
       max-width: 1446px;
       min-width: 400px;
       height: 900px;
-      display flex;
+      display: flex;
       flex-wrap: wrap;
     }
  

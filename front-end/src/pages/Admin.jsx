@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ContainerAdmin from '../assets/styles/Admin';
 import requestAdmin, { getUsers, deleteUsers } from '../api/requestAdmin';
+import AdminTable from '../components/AdminTable';
 
 function Admin() {
   const [userName, setUserName] = useState('');
@@ -84,11 +85,11 @@ function Admin() {
     await fetchUsers();
   }
 
-  async function fetchUser(id) {
+  const fetchUser = async (id) => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     await deleteUsers(id, token);
     await fetchUsers();
-  }
+  };
 
   useEffect(() => {
     const { toggleBtn } = validateFields();
@@ -167,15 +168,18 @@ function Admin() {
             value={ userPassword }
           />
         </div>
-        <select
-          className="admin-input"
-          data-testid="admin_manage__select-role"
-          onChange={ ({ target }) => setUserRole(target.value) }
-          value={ userRole }
-        >
-          <option value="customer">Cliente</option>
-          <option value="seller">Vendedor</option>
-        </select>
+        <div className="admin-container">
+          <span className="admin-input-span">Tipo</span>
+          <select
+            className="admin-input"
+            data-testid="admin_manage__select-role"
+            onChange={ ({ target }) => setUserRole(target.value) }
+            value={ userRole }
+          >
+            <option value="customer">Cliente</option>
+            <option value="seller">Vendedor</option>
+          </select>
+        </div>
 
         <button
           className="admin-button"
@@ -188,59 +192,15 @@ function Admin() {
         </button>
       </form>
 
-      <div>
-        <table>
-          <tr>
-            <th>Item</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Tipo</th>
-            <th>Excluir</th>
-          </tr>
-          {
-            arrayUsers
-            && arrayUsers.map((user, index) => (
-              <tr key={ user.id }>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-item-number-${index}`
-                  }
-                >
-                  { index + 1}
-                </td>
-                <td
-                  data-testid={ `admin_manage__element-user-table-name-${index}` }
-                >
-                  { user.name }
-                </td>
-                <td
-                  data-testid={ `admin_manage__element-user-table-email-${index}` }
-                >
-                  { user.email }
-                </td>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-role-${index}`
-                  }
-                >
-                  { user.role }
-                </td>
-                <td>
-                  <button
-                    data-testid={
-                      `admin_manage__element-user-table-remove-${index}`
-                    }
-                    className="admin-delete"
-                    type="button"
-                    onClick={ () => fetchUser(user.id) }
-                  >
-                    <span className="admin-button-span-delete">EXCLUIR</span>
-                  </button>
-                </td>
-              </tr>
-            ))
-          }
-        </table>
+      <div className="admin_manage__table-container">
+        <h1>Lista de usuários</h1>
+        {
+          arrayUsers
+            && <AdminTable
+              arrayUsers={ arrayUsers }
+              fetchUser={ fetchUser }
+            />
+        }
       </div>
     </ContainerAdmin>
   );

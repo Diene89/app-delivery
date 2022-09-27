@@ -68,7 +68,7 @@ const ContainerLogin = styled.div`
     background: white;    
   }
 
-  .login-button: disabled {
+  .login-button:disabled {
     background: white;    
   }
 
