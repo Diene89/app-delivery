@@ -21,9 +21,9 @@ function Products() {
   }
 
   const totalPrice = async () => {
-    const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
+    const cartInfo = await JSON.parse(localStorage.getItem('user'));
     let tempTotal = 0;
-    cartInfo.forEach((item) => {
+    cartInfo.productCart.forEach((item) => {
       tempTotal += (item.quantity * item.price);
     });
     setTotal(tempTotal);
@@ -65,12 +65,7 @@ function Products() {
           email: userInfo.email,
           token: userInfo.token,
           role: userInfo.role,
-          productCart: [
-            ...userInfo.productCart,
-            {
-              ...newitem.productCart,
-            },
-          ],
+          productCart: newitem.productCart,
         },
       ));
       totalPrice();
