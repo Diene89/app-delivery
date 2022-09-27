@@ -19,12 +19,14 @@ const ContainerAdmin = styled.div`
     background-color: rgba(191,219,213,0.9);
     -webkit-box-shadow: 0 10px 8px 1px #b7b9b9e5;
     box-shadow: 0 10px 8px 1px #b7b9b9e5;
+    width: 90vw;
   }
 
   .admin-container {
     display: flex;
     flex-direction: column;
     margin: 0.5rem;
+    width: 70%;
   }
 
   .admin-input {
@@ -38,6 +40,7 @@ const ContainerAdmin = styled.div`
   .admin-button {
     width: 110px;
     height: 35px;
+    padding: 10px;
     background: #036B52;
     border-radius: 8px;
     border: none;
@@ -63,17 +66,9 @@ const ContainerAdmin = styled.div`
     color: red;
   }
 
-  .admin-delete {
-    width: 110px;
-    height: 35px;
-    background: #036B52;
-    border-radius: 8px;
-    border: none;
-    color: #F2FFFC;
-  }
-
-  .admin-delete:hover {
-    background: #01362a;
+  .admin_manage__table-container{
+    width: 90vw;
+    margin-top: 15px;
   }
 
 `;
