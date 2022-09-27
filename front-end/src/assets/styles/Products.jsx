@@ -7,12 +7,24 @@ const ContainerProducts = styled.div`
     justify-content: center;
     align-items: center;
 
+    position:absolute; top:240px;
+
     .products-section {
       max-width: 1446px;
       min-width: 400px;
       height: 900px;
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      align-content: flex-start;
+    }
+
+    .total-button {
+      position: fixed;
+      bottom: 70px;
+      right: 40px;
+      height: 80px;
+      width: 20%;
     }
  
 `;

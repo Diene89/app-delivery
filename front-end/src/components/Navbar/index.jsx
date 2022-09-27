@@ -15,13 +15,9 @@ function Navbar() {
     userData();
   }, []);
 
-  function navigateTo(path) {
-    navigate(path);
-  }
-
   const logoutUser = () => {
-    localStorage.setItem('user', JSON.stringify({}));
-    navigateTo('/');
+    localStorage.clear();
+    navigate('/');
   };
 
   return (

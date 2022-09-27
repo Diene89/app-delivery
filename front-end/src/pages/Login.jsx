@@ -36,6 +36,7 @@ function Login() {
         email: response.email,
         role,
         token,
+        productCart: [],
       };
       localStorage.setItem('user', JSON.stringify(objUser));
       if (role !== 'administrator') {
