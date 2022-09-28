@@ -10,7 +10,7 @@ module.exports = {
       sellerId: Joi.number().required(),
       totalPrice: Joi.number().required(),
       deliveryAddress: Joi.string().required(),
-      deliveryNumber: Joi.number().required(),
+      deliveryNumber: Joi.string().required(),
       productCart: Joi.array().items({ id: Joi.number().required(),
         name: Joi.string().required(),
         price: Joi.number().required(),
