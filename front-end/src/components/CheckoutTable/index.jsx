@@ -39,16 +39,16 @@ function CheckoutTable({ items, removeItem }) {
           return (
             <tr
               className="checkout-table-body-tr"
-              key={ `${name}__${id}__${index}` }
+              key={ `${name}__${index + 1}__${index}` }
             >
               <td
                 className="checkout-table-body-td-item"
                 data-testid={
                   `customer_checkout__element-order-table-item-number-${index}`
                 }
-                title={ id }
+                title={ index + 1 }
               >
-                {id}
+                {index + 1}
               </td>
 
               <td
