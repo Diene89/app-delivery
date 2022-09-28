@@ -61,7 +61,7 @@ function CheckoutTable({ items, removeItem }) {
 
               <td
                 className="checkout-table-body-td-quantity"
-                data-tetsid={ `customer_checkout__element-order-table-quantity-${index}` }
+                data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
                 title={ quantity }
               >
                 {quantity}
