@@ -7,7 +7,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const userData = async () => {
-    const userInfo = await JSON.parse(localStorage.getItem('user'));
+    const userInfo = JSON.parse(localStorage.getItem('user'));
     if (userInfo) setUser(userInfo);
   };
 
@@ -23,8 +23,29 @@ function Navbar() {
   return (
     <NavbarContainer>
       <ul>
-        <li data-testid="customer_products__element-navbar-link-products">PRODUTOS</li>
-        <li data-testid="customer_products__element-navbar-link-orders">MEUS PEDIDOS</li>
+        { user.role === 'customer' && (
+          <li
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            PRODUTOS
+          </li>) }
+        { user.role === 'seller' && (
+          <li
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            PEDIDOS
+          </li>) }
+        { user.role === 'administrator' && (
+          <li
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            GERENCIAR USUÁRIOS
+          </li>) }
+        { user.role === 'customer' && (
+          <li data-testid="customer_products__element-navbar-link-orders">
+            MEUS  PEDIDOS
+          </li>
+        ) }
         <li
           data-testid="customer_products__element-navbar-user-full-name"
         >
