@@ -26,8 +26,26 @@ function CheckoutOrders() {
     setCartAmount(sum);
   }, [userShopCart]);
 
+  useEffect(() => {
+    const userInfos = JSON.parse(localStorage.getItem('user'));
+    const userWithNewAmount = {
+      ...userInfos,
+      totalPrice: cartAmount,
+    };
+
+    localStorage.setItem('user', JSON.stringify(userWithNewAmount));
+  }, [cartAmount]);
+
   const removeItem = (idToRemove) => {
+    const userInfos = JSON.parse(localStorage.getItem('user'));
+
     const newCart = userShopCart.filter(({ id }) => Number(id) !== Number(idToRemove));
+    const newLocalStorage = {
+      ...userInfos,
+      productCart: newCart,
+    };
+
+    localStorage.setItem('user', JSON.stringify(newLocalStorage));
 
     setUserShopCart(newCart);
   };
