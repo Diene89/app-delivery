@@ -17,6 +17,17 @@ function SellerOrders() {
     navigate(`/seller/orders/${id}`);
   }
 
+  function formatDate(data) {
+    console.log(data);
+    const ano = data.split('-')[0];
+    const mes = data.split('-')[1];
+    const diaHora = data.split('-')[2];
+    const dia = diaHora.split('T')[0];
+    const formatedData = `${dia}/${mes}/${ano}`;
+
+    return formatedData;
+  }
+
   useEffect(() => {
     getOrders();
   }, []);
@@ -39,7 +50,7 @@ function SellerOrders() {
             <span
               data-testid={ `seller_orders__element-order-date-${order.id}` }
             >
-              { order.saleDate }
+              { order.saleDate && formatDate(order.saleDate) }
             </span>
             <span
               data-testid={ `seller_orders__element-card-price-${order.id}` }
