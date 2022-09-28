@@ -121,7 +121,7 @@ CheckoutTable.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     quantity: PropTypes.number,
-    price: PropTypes.number,
+    price: PropTypes.string,
   })).isRequired,
   removeItem: PropTypes.func.isRequired,
 };
