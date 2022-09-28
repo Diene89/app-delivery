@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import OrderTableContainer from './style';
 
 function OrderTable({ order }) {
   const { products } = order;
 
   return (
-    <div>
+    <OrderTableContainer>
       <table>
         <thead>
           <tr>
@@ -19,30 +20,35 @@ function OrderTable({ order }) {
           { products && products.map((product, index) => (
             <tr key={ product.id }>
               <th
+                className="product-item"
                 data-testid={ `
                 seller_order_details__element-order-table-item-number-${index}` }
               >
                 {index + 1}
               </th>
               <th
+                className="product-nome"
                 data-testid={ `
                 seller_order_details__element-order-table-name-${index}` }
               >
                 {product.name}
               </th>
               <th
+                className="product-quantity"
                 data-testid={ `
                 seller_order_details__element-order-table-quantity-${index}` }
               >
                 {product.salesProducts.quantity}
               </th>
               <th
+                className="product-price"
                 data-testid={ `
                 seller_order_details__element-order-table-unit-price-${index}` }
               >
                 {product.price}
               </th>
               <th
+                className="product-subtotal"
                 data-testid={ `
                 seller_order_details__element-order-table-sub-total-${index}` }
               >
@@ -52,13 +58,14 @@ function OrderTable({ order }) {
           )) }
         </tbody>
       </table>
-      <span
+      <div
+        className="total_price"
         type="button"
         data-testid="seller_order_details__element-order-total-price"
       >
-        {order.totalPrice.toString().replace('.', ',')}
-      </span>
-    </div>
+        {`Total: R$ ${order.totalPrice.toString().replace('.', ',')}`}
+      </div>
+    </OrderTableContainer>
   );
 }
 

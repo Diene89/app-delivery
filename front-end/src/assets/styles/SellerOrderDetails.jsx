@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 const SellerOrderDetailsContainer = styled.div`
-  /* background-color: #fa9898; */
   margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 
   .order_details_container {
     display: flex;
@@ -14,6 +17,7 @@ const SellerOrderDetailsContainer = styled.div`
     background-color: #bde3fa;
     box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.25);
     height: 80px;
+    width: 80vw;
   }
 
   .order_details_status {
