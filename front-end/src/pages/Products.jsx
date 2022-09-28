@@ -106,38 +106,39 @@ function Products() {
   };
 
   return (
-    <>
+    <ContainerProducts>
       <Navbar />
-      <ContainerProducts>
-        <div className="products-section">
-          {
-            products.length > 0
-              ? products.map(({ name, price, urlImage, id }, index) => (
-                <ProductsCard
-                  count={ index + 1 }
-                  key={ index }
-                  name={ name }
-                  price={ price }
-                  urlImage={ urlImage }
-                  id={ id }
-                  userCartData={ userCartData }
-                />
-              )) : ''
-          }
-        </div>
-        <button
-          type="button"
-          className="total-button"
-          data-testid="customer_products__button-cart"
-          onClick={ () => navigateTo('/customer/checkout') }
-          disabled={ total === 0 }
-        >
-          <span data-testid="customer_products__checkout-bottom-value">
-            { total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-          </span>
-        </button>
-      </ContainerProducts>
-    </>
+
+      <div className="products-section">
+        {
+          products.length && (
+            products.map(({ name, price, urlImage, id }, index) => (
+              <ProductsCard
+                count={ index + 1 }
+                key={ index }
+                name={ name }
+                price={ price }
+                urlImage={ urlImage }
+                id={ id }
+                userCartData={ userCartData }
+              />
+            ))
+          )
+        }
+      </div>
+
+      <button
+        type="button"
+        className="total-button"
+        data-testid="customer_products__button-cart"
+        onClick={ () => navigateTo('/customer/checkout') }
+        disabled={ total === 0 }
+      >
+        <span data-testid="customer_products__checkout-bottom-value">
+          { total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+        </span>
+      </button>
+    </ContainerProducts>
   );
 }
 

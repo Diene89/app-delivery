@@ -22,20 +22,31 @@ function Navbar() {
 
   return (
     <NavbarContainer>
-      <ul>
-        <li data-testid="customer_products__element-navbar-link-products">PRODUTOS</li>
-        <li data-testid="customer_products__element-navbar-link-orders">MEUS PEDIDOS</li>
-        <li
-          data-testid="customer_products__element-navbar-user-full-name"
-        >
-          { user.name }
-        </li>
-      </ul>
+      <div className="navbar-options-container">
+        <div className="navbar-option">
+          <span data-testid="customer_products__element-navbar-link-products">
+            PRODUTOS
+          </span>
+        </div>
+
+        <div className="navbar-option">
+          <span data-testid="customer_products__element-navbar-link-orders">
+            MEUS PEDIDOS
+          </span>
+        </div>
+
+        <div className="navbar-option">
+          <span data-testid="customer_products__element-navbar-user-full-name">
+            { user.name }
+          </span>
+        </div>
+      </div>
+
       <button
-        type="button"
         className="logout-button"
-        onClick={ logoutUser }
         data-testid="customer_products__element-navbar-link-logout"
+        onClick={ logoutUser }
+        type="button"
       >
         SAIR
       </button>
