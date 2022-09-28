@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getSellerOrderById, updateOrder } from '../api/requestSeller';
 import OrderTable from '../components/OrderTable';
 import Navbar from '../components/Navbar';
+import SellerOrderDetailsContainer from '../assets/styles/SellerOrderDetails';
 
 function SellerOrderDetails() {
   const test = 'seller_order_details__element-order-details-label-delivery-status';
@@ -59,47 +60,57 @@ function SellerOrderDetails() {
   return (
     <>
       <Navbar />
-      <h1>Detalhe do pedido</h1>
-      { order && (
-        <div>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-id"
-          >
-            { order.id }
-          </span>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-date"
-          >
-            { formatDate() }
-          </span>
-          <span
-            data-testid={ test }
-          >
-            { order.status }
-          </span>
-          <button
-            type="button"
-            disabled={ disablePreparing }
-            data-testid="seller_order_details__button-preparing-check"
-            onClick={ () => {
-              updateStatus(order.status);
-            } }
-          >
-            Preparar pedido
-          </button>
-          <button
-            disabled={ disableDispatch }
-            data-testid="seller_order_details__button-dispatch-check"
-            type="button"
-            onClick={ () => {
-              updateStatus(order.status);
-            } }
-          >
-            Saiu para entrega
-          </button>
-        </div>
-      )}
-      { order && <OrderTable order={ order } /> }
+      <SellerOrderDetailsContainer statusColor={ order && order.status }>
+        <h1>Detalhe do pedido</h1>
+        { order && (
+          <div className="order_details_container">
+            <div className="order_details_status">
+              <span
+                data-testid="seller_order_details__element-order-details-label-order-id"
+              >
+                { order.id }
+              </span>
+              <span
+                data-testid="seller_order_details__element-order-details-label-order-date"
+              >
+                { formatDate() }
+              </span>
+              <span
+                className="order_status"
+                data-testid={ test }
+              >
+                { order.status }
+              </span>
+            </div>
+
+            <div className="order_details_button_container">
+              <button
+                className="order_details_button_preparing"
+                type="button"
+                disabled={ disablePreparing }
+                data-testid="seller_order_details__button-preparing-check"
+                onClick={ () => {
+                  updateStatus(order.status);
+                } }
+              >
+                Preparar pedido
+              </button>
+              <button
+                className="order_details_button_dispatch"
+                disabled={ disableDispatch }
+                data-testid="seller_order_details__button-dispatch-check"
+                type="button"
+                onClick={ () => {
+                  updateStatus(order.status);
+                } }
+              >
+                Saiu para entrega
+              </button>
+            </div>
+          </div>
+        )}
+        { order && <OrderTable order={ order } /> }
+      </SellerOrderDetailsContainer>
     </>
   );
 }
