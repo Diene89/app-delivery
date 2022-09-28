@@ -73,10 +73,12 @@ function CheckoutTable({ items, removeItem }) {
                   `customer_checkout__element-order-table-unit-price-${index}`
                 }
                 title={
-                  price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                  Number(price)
+                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
                 }
               >
-                {price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                {Number(price)
+                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </td>
 
               <td
