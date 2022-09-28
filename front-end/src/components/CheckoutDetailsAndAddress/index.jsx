@@ -91,7 +91,7 @@ function CheckoutDetailsAndAddress() {
 
             <input
               className="checkout-detailts-input"
-              data-testid="customer_checkout__input-addressNumber"
+              data-testid="customer_checkout__input-address-number"
               type="text"
               placeholder="Número do seu endereço"
               onChange={ ({ target }) => handleAddressNumber(target) }
