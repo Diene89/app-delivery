@@ -53,7 +53,7 @@ const ContainerOrders = styled.div`
     width: fit-content;
   }
 
-  .checkout-orders-amount > span {
+  .checkout-orders-amount {
     text-shadow: 2px 2px #000000;
   }
 `;
