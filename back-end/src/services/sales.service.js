@@ -54,7 +54,7 @@ module.exports = {
       return { message: 'Você não possui nenhuma compra' };
     }
 
-    return sales;
+    return saleList;
   },
 
   async getSaleById(id) {
