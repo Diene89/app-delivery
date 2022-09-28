@@ -37,7 +37,7 @@ export async function updateOrder(id, status) {
         'Content-type': 'application/json',
       },
     });
-    const data = response.json();
+    const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);
