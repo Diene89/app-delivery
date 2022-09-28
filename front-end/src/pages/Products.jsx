@@ -73,7 +73,7 @@ function Products() {
       totalPrice();
     } else {
       const newCartData = userInfo.productCart.map((item) => (
-        item.name === name ? { name, price, quantity } : item
+        item.name === name ? { name, price, quantity, id } : item
       ));
       localStorage.setItem('user', JSON.stringify(
         {
