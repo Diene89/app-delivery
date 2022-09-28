@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 const SellerOrdersContainer = styled.div`
-  /* width: 100vw; */
-  /* height: 100vh; */
   display: flex;
   justify-content: center;
   margin-top: 10px;
@@ -34,7 +32,7 @@ const SellerOrdersContainer = styled.div`
     flex-direction: column;
   }
 
-  .status_order {
+  .order_status {
     background-color: ${(props) => {
     if (props.statusColor === 'Preparando') {
       return '#66CC00';

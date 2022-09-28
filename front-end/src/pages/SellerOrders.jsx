@@ -64,7 +64,7 @@ function SellerOrders() {
                 </div>
 
                 <span
-                  className="status_order"
+                  className="order_status"
                   data-testid={ `seller_orders__element-delivery-status-${order.id}` }
                 >
                   { order.status }

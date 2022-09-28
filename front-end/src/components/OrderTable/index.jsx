@@ -52,12 +52,12 @@ function OrderTable({ order }) {
           )) }
         </tbody>
       </table>
-      <button
+      <span
         type="button"
         data-testid="seller_order_details__element-order-total-price"
       >
         {order.totalPrice.toString().replace('.', ',')}
-      </button>
+      </span>
     </div>
   );
 }
