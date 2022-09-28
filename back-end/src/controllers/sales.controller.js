@@ -8,7 +8,7 @@ module.exports = {
         await salesService.validateRegisterBody(req.body);
 
         const status = 'Pendente';
-        const date = new Date();
+        const saleDate = new Date();
 
         const {
             sellerId, totalPrice, deliveryAddress,
@@ -16,14 +16,14 @@ module.exports = {
 
         const result = await salesService.checkoutNewSale({
             userId: id,
-            sellerId,
+            sellerId: Number(sellerId),
             totalPrice,
             deliveryAddress,
             deliveryNumber,
-            date,
+            saleDate,
             status,
         }, productCart);
-        
+
         return res.status(201).json(result);
     },
 

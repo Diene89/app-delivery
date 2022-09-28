@@ -1,7 +1,41 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductsCardContainer from './style';
 
-function ProductsCard({ price, urlImage, name, count }) {
+function ProductsCard({
+  price,
+  urlImage,
+  name,
+  count,
+  userCartData,
+  id,
+}) {
+  const [quantity, setQuantity] = useState(0);
+
+  const sumButton = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const subButton = async () => {
+    if (quantity !== 0) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  useEffect(() => {
+    const { productCart } = JSON.parse(localStorage.getItem('user'));
+    const findItem = productCart.find((item) => Number(item.id) === id);
+
+    if (findItem) {
+      setQuantity(findItem.quantity);
+    }
+  }, []);
+
+  useEffect(() => {
+    const obj = { price, name, quantity, id };
+    userCartData(obj);
+  }, [quantity]);
+
   return (
     <ProductsCardContainer>
       <img
@@ -12,7 +46,7 @@ function ProductsCard({ price, urlImage, name, count }) {
       <h1
         data-testid={ `customer_products__element-card-price-${count}` }
       >
-        { price }
+        { Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
       </h1>
       <h2
         data-testid={ `customer_products__element-card-title-${count}` }
@@ -22,16 +56,20 @@ function ProductsCard({ price, urlImage, name, count }) {
       <button
         type="button"
         data-testid={ `customer_products__button-card-rm-item-${count}` }
+        onClick={ subButton }
       >
         -
       </button>
       <input
         type="text"
+        value={ quantity }
+        onChange={ (e) => setQuantity(Number(e.target.value)) }
         data-testid={ `customer_products__input-card-quantity-${count}` }
       />
       <button
         type="button"
         data-testid={ `customer_products__button-card-add-item-${count}` }
+        onClick={ sumButton }
       >
         +
       </button>
@@ -44,6 +82,8 @@ ProductsCard.propTypes = {
   name: PropTypes.string.isRequired,
   urlImage: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
+  userCartData: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default ProductsCard;

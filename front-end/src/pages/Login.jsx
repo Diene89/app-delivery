@@ -30,12 +30,14 @@ function Login() {
       setLoginError(true);
     }
     if (response.token) {
-      const { name, role, token } = response;
+      const { id, name, role, token } = response;
       const objUser = {
+        id,
         name,
         email: response.email,
         role,
         token,
+        productCart: [],
       };
       localStorage.setItem('user', JSON.stringify(objUser));
       if (role === 'administrator') {
