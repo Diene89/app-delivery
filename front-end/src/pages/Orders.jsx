@@ -1,6 +1,9 @@
+import Navbar from '../components/Navbar';
+
 function Orders() {
   return (
     <>
+      <Navbar />
       <h1>Página de Pedidos</h1>
 
       <p>
