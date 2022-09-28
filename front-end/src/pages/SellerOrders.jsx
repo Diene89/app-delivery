@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SellerOrdersContainer from '../assets/styles/SellerOrders';
 import { getSellerOrders } from '../api/requestSeller';
+import Navbar from '../components/Navbar';
 
 function SellerOrders() {
   const [orders, setOrders] = useState(['test']);
@@ -33,39 +34,42 @@ function SellerOrders() {
   }, []);
 
   return (
-    <SellerOrdersContainer>
-      { orders && orders.map((order) => (
-        <div key={ order.id }>
-          <button type="button" onClick={ () => rediretToDetails(order.id) }>
-            <span
-              data-testid={ `seller_orders__element-order-id-${order.id}` }
-            >
-              { order.id }
-            </span>
-            <span
-              data-testid={ `seller_orders__element-delivery-status-${order.id}` }
-            >
-              { order.status }
-            </span>
-            <span
-              data-testid={ `seller_orders__element-order-date-${order.id}` }
-            >
-              { order.saleDate && formatDate(order.saleDate) }
-            </span>
-            <span
-              data-testid={ `seller_orders__element-card-price-${order.id}` }
-            >
-              { order.totalPrice }
-            </span>
-            <span
-              data-testid={ `seller_orders__element-card-address-${order.id}` }
-            >
-              { `${order.deliveryAddress}, ${order.deliveryNumber}` }
-            </span>
-          </button>
-        </div>
-      )) }
-    </SellerOrdersContainer>
+    <>
+      <Navbar />
+      <SellerOrdersContainer>
+        { orders && orders.map((order) => (
+          <div key={ order.id }>
+            <button type="button" onClick={ () => rediretToDetails(order.id) }>
+              <span
+                data-testid={ `seller_orders__element-order-id-${order.id}` }
+              >
+                { order.id }
+              </span>
+              <span
+                data-testid={ `seller_orders__element-delivery-status-${order.id}` }
+              >
+                { order.status }
+              </span>
+              <span
+                data-testid={ `seller_orders__element-order-date-${order.id}` }
+              >
+                { order.saleDate && formatDate(order.saleDate) }
+              </span>
+              <span
+                data-testid={ `seller_orders__element-card-price-${order.id}` }
+              >
+                { order.totalPrice }
+              </span>
+              <span
+                data-testid={ `seller_orders__element-card-address-${order.id}` }
+              >
+                { `${order.deliveryAddress}, ${order.deliveryNumber}` }
+              </span>
+            </button>
+          </div>
+        )) }
+      </SellerOrdersContainer>
+    </>
   );
 }
 
