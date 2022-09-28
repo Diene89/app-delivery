@@ -6,8 +6,6 @@ import CheckoutSelect from '../CheckoutDetailsSelect';
 import ContainerDetailsAndAddress from './style';
 
 function CheckoutDetailsAndAddress() {
-  const totalPrice = 28.46;
-
   const [sellersInfos, setSellersInfo] = useState([]);
   const [sellerId, setSellerId] = useState(null);
   const [deliveryAddress, setDeliveryAddress] = useState('');
@@ -42,7 +40,11 @@ function CheckoutDetailsAndAddress() {
 
   const handleCompleteCheckout = async () => {
     const statusSuccessCode = 201;
-    const { shopCart: productCart, token } = JSON.parse(localStorage.getItem('user'));
+    const {
+      productCart,
+      token,
+      totalPrice,
+    } = JSON.parse(localStorage.getItem('user'));
 
     const userData = {
       sellerId,
