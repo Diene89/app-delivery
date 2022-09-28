@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSellerOrderById, updateOrder } from '../api/requestSeller';
 import OrderTable from '../components/OrderTable';
+import Navbar from '../components/Navbar';
 
 function SellerOrderDetails() {
+  const test = 'seller_order_details__element-order-details-label-delivery-status';
   const [order, setOrder] = useState();
   const [disablePreparing, setDisablePreparing] = useState(false);
   const [disableDispatch, setDisableDispatch] = useState(true);
@@ -11,6 +13,7 @@ function SellerOrderDetails() {
   const { id } = useParams();
 
   async function buttonDisable(status) {
+    console.log(status);
     if (status === 'Preparando') {
       setDisablePreparing(true);
       setDisableDispatch(false);
@@ -29,11 +32,11 @@ function SellerOrderDetails() {
 
   async function updateStatus(status) {
     if (status === 'Pendente') {
-      updateOrder(id, 'Preparando');
+      await updateOrder(id, 'Preparando');
       setRequestStatus('preparing');
     }
     if (status === 'Preparando') {
-      updateOrder(id, 'Em Trânsito');
+      await updateOrder(id, 'Em Trânsito');
       setRequestStatus('dispatch');
     }
   }
@@ -55,6 +58,7 @@ function SellerOrderDetails() {
 
   return (
     <>
+      <Navbar />
       <h1>Detalhe do pedido</h1>
       { order && (
         <div>
@@ -69,8 +73,7 @@ function SellerOrderDetails() {
             { formatDate() }
           </span>
           <span
-            data-testid={ `
-            seller_order_details__element-order-details-label-delivery-status` }
+            data-testid={ test }
           >
             { order.status }
           </span>
