@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ContainerOrders = styled.div`
   display: flex;
   flex-direction: column;
-  height: 469px;
+  height: fit-content;
   width: 80%;
 
   .checkout-orders-container {
@@ -11,45 +11,48 @@ const ContainerOrders = styled.div`
     border: 1px solid #B1C2BE;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     height: 100%;
-    margin-top: 10px;
-    min-width: 795px;
     max-width: 1280px;
-    padding: 15px;
+    min-width: 795px;
+    padding: 15px 15px 5px;
     position: relative;
     width: 100%;
   }
 
   .checkout-orders-title {
     font-family: Roboto, sans-serif;
+    font-size: 30px;
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
     line-height: 42px;
     padding-left: 10px;
   }
 
   .checkout-orders-table-container {
-    max-height: 300px;
+    max-height: 200px;
     overflow-y: scroll;
   }
 
-  .checkout-orders-amount {
-    color: #F2FFFC;
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 36px;
+  .checkout-orders-amount-container {
     display: flex;
+    justify-content: flex-end;
+    padding: 5px 15px 0;
+    padding-right: 15px;
+  }
+
+  .checkout-orders-amount {
     align-items: center;
-    text-align: center;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
     background-color: #036B52;
     border-radius: 10px;
+    color: #F2FFFC;
+    display: flex;
+    font-family: Roboto, sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
     height: fit-content;
+    line-height: 36px;
     padding: 10px 20px;
+    text-align: center;
     width: fit-content;
   }
 

@@ -59,15 +59,16 @@ function CheckoutOrders() {
           <CheckoutTable items={ userShopCart } removeItem={ removeItem } />
         </div>
 
-        <div className="checkout-orders-amount">
-          R$:&nbsp;
-          <span data-testid="customer_checkout__element-order-total-price">
-            {cartAmount.toLocaleString(
-              'pt-BR',
-              { minimumFractionDigits: 2, maximumFractionDigits: 2 },
-            )}
-
-          </span>
+        <div className="checkout-orders-amount-container">
+          <div className="checkout-orders-amount">
+            R$:&nbsp;
+            <span data-testid="customer_checkout__element-order-total-price">
+              {cartAmount.toLocaleString(
+                'pt-BR',
+                { minimumFractionDigits: 2, maximumFractionDigits: 2 },
+              )}
+            </span>
+          </div>
         </div>
       </div>
     </ContainerOrders>

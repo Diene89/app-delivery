@@ -39,7 +39,7 @@ const CheckoutTableContainer = styled.table`
     line-height: 26px;
   }
 
-  .checkout-table-body-td-description {
+  .checkout-table-body-td-name {
     background-color: #EAF1EF;
     color: #001813;
     font-weight: 400;
