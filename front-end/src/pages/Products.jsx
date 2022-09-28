@@ -41,7 +41,6 @@ function Products() {
   const userCartData = async (objData) => {
     const { name, price, quantity, id } = objData;
     const userInfo = await JSON.parse(localStorage.getItem('user'));
-    // const cartInfo = await JSON.parse(localStorage.getItem('userCart'));
     const newitem = {
       name: userInfo.name,
       email: userInfo.email,
