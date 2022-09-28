@@ -10,7 +10,7 @@ module.exports = {
       sellerId: Joi.number().required(),
       totalPrice: Joi.number().required(),
       deliveryAddress: Joi.string().required(),
-      deliveryNumber: Joi.number().required(),
+      deliveryNumber: Joi.string().required(),
       productCart: Joi.array().items({ id: Joi.number().required(),
         name: Joi.string().required(),
         price: Joi.number().required(),
@@ -30,7 +30,7 @@ module.exports = {
 
     try {
       const newSale = await sales.create(data);
-  
+
     const arrayProduct = productCart.map((item) => ({
         saleId: newSale.dataValues.id, productId: item.id, quantity: item.quantity,
     }));
@@ -54,7 +54,7 @@ module.exports = {
       return { message: 'Você não possui nenhuma compra' };
     }
 
-    return sales;
+    return saleList;
   },
 
   async getSaleById(id) {
