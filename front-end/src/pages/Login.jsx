@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ContainerLogin from '../assets/styles/Login';
-import rockGlass from '../assets/images/rockGlass.svg';
-import requestLogin from '../api/requestLogin';
+import LoginContainer from '../assets/styles/Login';
+import appLogo from '../assets/images/app-logo.gif';
+import LoginForm from '../components/LoginForm';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -54,55 +52,22 @@ function Login() {
   };
 
   return (
-    <ContainerLogin>
-      <div className="formLogin">
-        <img src={ rockGlass } alt="logo da aplicação" />
-        <h1>Nome da aplicação</h1>
-        <form>
-          <label htmlFor="common_login__input-email">
-            Login
-            <input
-              type="email"
-              name="email"
-              onChange={ ({ target }) => setEmail(target.value) }
-              data-testid="common_login__input-email"
-            />
-          </label>
-          <label htmlFor="common_login__input-password">
-            Senha
-            <input
-              type="password"
-              name="password"
-              onChange={ ({ target }) => setPassword(target.value) }
-              data-testid="common_login__input-password"
-            />
-          </label>
-          <button
-            type="button"
-            className="login-button"
-            disabled={ buttonDisabled }
-            onClick={ loginHandle }
-            data-testid="common_login__button-login"
-          >
-            LOGIN
-          </button>
-          <button
-            type="button"
-            className="register-button"
-            data-testid="common_login__button-register"
-            onClick={ () => navigateTo('/register') }
-          >
-            Ainda não tenho conta
-          </button>
-          <span
-            data-testid="common_login__element-invalid-email"
-          >
-            { loginError ? 'Menssagem de ERRO' : '' }
-          </span>
+    <LoginContainer>
+      <div className="login-form-container">
+        <img
+          alt="Logo da aplicação: um homem com boné, máscara e em uma moto pequena, \
+          com um cesto de compras cheio."
+          className="login-logo"
+          src={ appLogo }
+        />
 
-        </form>
+        <h1 className="login-title">Nome da aplicação</h1>
+
+        <LoginForm />
       </div>
-    </ContainerLogin>
+
+      <div className="login-background-color" />
+    </LoginContainer>
   );
 }
 

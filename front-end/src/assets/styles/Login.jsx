@@ -1,77 +1,46 @@
 import styled from 'styled-components';
+import loginBg from '../images/login-bg.jpg';
 
-const ContainerLogin = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+const LoginContainer = styled.div`
   align-items: center;
-  
-  img {
-    width: 120px;
-    height: 120px;
-    margin: 30px;
+  background-image: url(${loginBg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+
+  .login-background-color {
+    background-color: #00000058;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 0;
   }
 
-  .formLogin {
-    display: flex;
-    justify-content: center;
+  .login-form-container {
     align-items: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    border: 1px solid black;
-    width: 400px;
-    height:560px;
-    border-radius: 24px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 3px 12px 0px rgb(0 0 0);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 20px;
+    position: relative;
+    z-index: 2;
   }
 
-  .formLogin form {
-    height: 290px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .formLogin form label{
-    display: flex;
-    width: 300px;
-    justify-content: center;
-    flex-wrap: wrap;
+  .login-logo {
     margin-bottom: 20px;
-    font-size: 1em;
+    width: 200px;
   }
 
-  .formLogin form label input{
-    width:290px;
-    height: 48px;
-    border-radius: 24px;
-    padding-left: 20px;
-    font-size: 1.2em;
+  .login-title {
+    font-size: 32px;
+    margin-bottom: 20px;
   }
-
-  button {
-    width: 290px;
-    height: 48px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    font-size: 1.2em;
-  }
-
-  .register-button {
-    background: white;
-    border: none;
-    color: black;
-  }
-
-  .login-button {
-    background: white;    
-  }
-
-  .login-button:disabled {
-    background: white;    
-  }
-
 `;
 
-export default ContainerLogin;
+export default LoginContainer;
