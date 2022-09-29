@@ -20,6 +20,11 @@ function Login() {
     if (emailValidation && passwordValidation) setButtonDisabled(false);
   }, [email, password]);
 
+  useEffect(() => {
+    const verifyLogin = JSON.parse(localStorage.getItem('user'));
+    if (verifyLogin) navigate('/customer/products');
+  }, []);
+
   function navigateTo(path) {
     navigate(path);
   }

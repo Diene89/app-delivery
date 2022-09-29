@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: true,
             type: DataTypes.INTEGER,
             field: 'sale_id'
-
          },
          productId: {
             foreignKey: true,
