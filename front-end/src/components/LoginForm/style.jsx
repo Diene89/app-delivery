@@ -3,6 +3,8 @@ import styled from 'styled-components';
 const LoginFormContainer = styled.form`
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 20;
 
   .login-form-label {
     display: flex;
@@ -22,7 +24,7 @@ const LoginFormContainer = styled.form`
     background-color: rgba(248, 252, 254, 0.25);
     border: 1px;
     border-radius: 50px;
-    box-shadow: 0px 0px 6px 1px rgb(41 114 155 / 25%);
+    box-shadow: 0px 0px 6px 4px rgb(41 114 155 / 25%);
     font-size: 20px;
     height: 40px;
     padding: 20px;

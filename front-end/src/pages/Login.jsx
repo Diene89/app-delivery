@@ -17,6 +17,8 @@ function Login() {
 
         <LoginForm />
       </div>
+
+      <div className="login-background-color" />
     </LoginContainer>
   );
 }
