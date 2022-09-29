@@ -6,7 +6,7 @@ function OrdersCard({ id, status, totalPrice, saleDate }) {
   const date = new Date(saleDate);
 
   const options = {
-    year: '2-digit',
+    year: 'numeric',
     month: 'numeric',
     day: 'numeric',
   };
@@ -28,7 +28,8 @@ function OrdersCard({ id, status, totalPrice, saleDate }) {
           {saleFormat}
         </div>
         <div data-testId={ `customer_orders__element-card-price-${id}` }>
-          {totalPrice}
+          { Number(totalPrice)
+            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
         </div>
       </Link>
     </OrdersCardContainer>
