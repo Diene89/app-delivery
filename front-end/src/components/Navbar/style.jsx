@@ -7,6 +7,17 @@ const NavbarContainer = styled.div`
   height: fit-content;
   width: 100vw;
 
+  .navbar-test {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
+    
+    span {
+      margin: 15px;
+      width: 250px;
+    }
+  }
+
   .navbar-options-container {
     display: flex;
     padding: 15px 0;

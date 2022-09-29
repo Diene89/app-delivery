@@ -28,7 +28,7 @@ const SellerOrderDetailsContainer = styled.div`
     margin-left: 15px;
   }
 
-  .order_details_button_preparing {
+  /* .order_details_button_preparing {
     display: ${(props) => {
     if (props.statusColor === 'Pendente') {
       return 'inLine';
@@ -44,7 +44,7 @@ const SellerOrderDetailsContainer = styled.div`
     }
     return 'none';
   }};
-  }
+  } */
   
   button {
     margin: 10px;
