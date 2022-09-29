@@ -5,6 +5,7 @@ import OrdersCard from '../components/OrdersCard';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  console.log(orders, 'ordeeeeers');
 
   const getAllOrders = async () => {
     const { token } = await JSON.parse(localStorage.getItem('user'));
@@ -21,7 +22,7 @@ function Orders() {
       <Navbar />
       <div>
         {
-          orders.map((item, index) => (
+          orders.message ? (<p>{orders.message}</p>) : orders.map((item, index) => (
             <OrdersCard
               id={ item.id }
               status={ item.status }
