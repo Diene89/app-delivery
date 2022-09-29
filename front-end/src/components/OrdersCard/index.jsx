@@ -17,16 +17,16 @@ function OrdersCard({ id, status, totalPrice, saleDate }) {
     <OrdersCardContainer>
       <Link to={ `/customer/orders/${id}` }>
 
-        <div data-testId={ `customer_orders__element-order-id-${id}` }>
+        <div data-testid={ `customer_orders__element-order-id-${id}` }>
           {`Pedido ${id}`}
         </div>
-        <div data-testId={ `customer_orders__element-delivery-status-${id}` }>
+        <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
           {status}
         </div>
-        <div data-testId={ `customer_orders__element-order-date-${id}` }>
+        <div data-testid={ `customer_orders__element-order-date-${id}` }>
           {saleFormat}
         </div>
-        <div data-testId={ `customer_orders__element-card-price-${id}` }>
+        <div data-testid={ `customer_orders__element-card-price-${id}` }>
           { Number(totalPrice)
             .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
         </div>

@@ -18,4 +18,20 @@ const requestOrders = async (token) => {
   }
 };
 
+export async function updateOrder(id, status) {
+  try {
+    const response = await fetch(`http://localhost:3001/customer/orders/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default requestOrders;

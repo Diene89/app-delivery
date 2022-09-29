@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { sales, salesProducts, user, sequelize } = require('../database/models');
+const { sales, salesProducts, user, sequelize, products } = require('../database/models');
 
 const jwtService = require('./utils/jwtService');
 
@@ -63,6 +63,9 @@ module.exports = {
         as: 'seller',
         model: user,
         attributes: ['name'],
+      }, {
+        model: products,
+        as: 'products'
       }],
     });
 
