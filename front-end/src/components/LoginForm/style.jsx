@@ -24,7 +24,7 @@ const LoginFormContainer = styled.form`
     background-color: rgba(248, 252, 254, 0.25);
     border: 1px;
     border-radius: 50px;
-    box-shadow: 0px 0px 6px 4px rgb(41 114 155 / 25%);
+    box-shadow: inset 0px 0px 0px 2px rgba(41, 114, 155, 0.25);
     font-size: 20px;
     height: 40px;
     padding: 20px;
