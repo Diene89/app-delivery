@@ -2,23 +2,21 @@ import styled from 'styled-components';
 
 const NavbarContainer = styled.div`
   background: green;
-  width: 100vw;
   display: flex;
   justify-content: space-between;
-  position: relative;
-  top:0;
-  left: 0;
-  height: 80px;
+  height: fit-content;
   width: 100vw;
 
-  ul {
+  .navbar-options-container {
     display: flex;
-    justify-content: space-between;
+    padding: 15px 0;
+    width: 100%;
   }
 
-  ul li {
-    margin: 30px 60px 0px 60px;
-    list-style-type: none;
+  .navbar-option {
+    flex: 1;
+    height: 100%;
+    text-align: center;
   }
 
   button {
@@ -27,7 +25,7 @@ const NavbarContainer = styled.div`
     border: none;
   }
 
-  button: hover {
+  button:hover {
     cursor:pointer;
   }
 `;

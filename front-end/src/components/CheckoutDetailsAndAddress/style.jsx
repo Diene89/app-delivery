@@ -21,7 +21,6 @@ const ContainerDetailsAndAddress = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
-    padding: 10px;
     max-width: 1280px;
     min-width: 795px;
   }
@@ -67,7 +66,7 @@ const ContainerDetailsAndAddress = styled.div`
 
   .checkout-details-finish-button-container {
     align-self: center;
-    margin: 10px 0 15px;
+    margin-bottom: 10px;
   }
 
   .checkout-details-finish-button-container > button {
