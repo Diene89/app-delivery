@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/seller/orders/" element={ <SellerOrders /> } />
         <Route exact path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
-        <Route exact path="/customer/orders/:id" element={ <Orders /> } />
+        <Route exact path="/customer/orders" element={ <Orders /> } />
       </Routes>
       <GlobalStyle />
     </>

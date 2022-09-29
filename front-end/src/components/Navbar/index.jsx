@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NavbarContainer from './style';
 
 function Navbar() {
@@ -60,11 +60,12 @@ function Navbar() {
           </span>
         </div>
 
-        <div className="navbar-option">
-          <span data-testid="customer_products__element-navbar-link-orders">
-            MEUS PEDIDOS
-          </span>
-        </div>
+        <Link
+          to="/customer/orders"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          MEUS PEDIDOS
+        </Link>
 
         <div className="navbar-option">
           <span data-testid="customer_products__element-navbar-user-full-name">
@@ -84,5 +85,4 @@ function Navbar() {
     </NavbarContainer>
   );
 }
-
 export default Navbar;

@@ -23,7 +23,7 @@ module.exports = {
             saleDate,
             status,
         }, productCart);
-
+      
         return res.status(201).json(result);
     },
 

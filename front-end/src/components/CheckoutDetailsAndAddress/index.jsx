@@ -55,12 +55,11 @@ function CheckoutDetailsAndAddress() {
     };
 
     const {
-      status,
-      data: { id: salleId },
+      data, status,
     } = await requestCompleteCheckout(userData, token);
 
     if (status === statusSuccessCode) {
-      return navigate(`/customer/orders/${salleId}`);
+      return navigate(`/customer/orders/${data.id}`);
     }
   };
 
