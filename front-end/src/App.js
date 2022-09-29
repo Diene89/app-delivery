@@ -9,6 +9,7 @@ import SellerOrders from './pages/SellerOrders';
 import SellerOrderDetails from './pages/SellerOrderDetails';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
+import OrdersDetails from './pages/OrdersDetails';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/customer/orders/:id" element={ <SellerOrderDetails /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/customer/orders" element={ <Orders /> } />
+        <Route exact path="/customer/orders/:id" element={ <OrdersDetails /> } />
       </Routes>
       <GlobalStyle />
     </>

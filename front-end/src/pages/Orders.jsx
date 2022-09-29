@@ -26,7 +26,7 @@ function Orders() {
       </p>
       <div>
         {
-          orders.map((item, index) => (
+          orders.message ? (<p>{orders.message}</p>) : orders.map((item, index) => (
             <OrdersCard
               id={ item.id }
               status={ item.status }

@@ -6,6 +6,6 @@ const salesRoute = Router();
 salesRoute.post('/checkout', salesController.checkoutNewSale);
 salesRoute.get('/orders', salesController.getAllSales);
 salesRoute.get('/orders/:id', salesController.getSaleById);
-salesRoute.patch('/:id', salesController.updateStatus);
+salesRoute.patch('/orders/:id', salesController.updateStatus);
 
 module.exports = salesRoute;
