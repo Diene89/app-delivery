@@ -54,11 +54,14 @@ const LoginFormContainer = styled.form`
   }
 
   .login-form-register-btn {
+    align-self: center;
     background: none;
     border: none;
+    cursor: pointer;
     font-size: 16px;
     font-weight: 700;
     text-decoration: underline;
+    width: fit-content;
   }
 `;
 
