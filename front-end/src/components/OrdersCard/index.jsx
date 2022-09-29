@@ -14,7 +14,6 @@ function OrdersCard({ id, status, totalPrice, saleDate }) {
   const saleFormat = new Intl.DateTimeFormat('pt-br', options).format(date);
 
   return (
-
     <OrdersCardContainer>
       <Link to={ `/customer/orders/${id}` }>
 

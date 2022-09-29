@@ -55,5 +55,4 @@ function Navbar() {
     </NavbarContainer>
   );
 }
-
 export default Navbar;
