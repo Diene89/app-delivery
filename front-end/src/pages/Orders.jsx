@@ -5,7 +5,6 @@ import OrdersCard from '../components/OrdersCard';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
-  console.log(orders, 'ordeeeeers');
 
   const getAllOrders = async () => {
     const { token } = await JSON.parse(localStorage.getItem('user'));

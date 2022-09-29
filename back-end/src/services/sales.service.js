@@ -65,7 +65,7 @@ module.exports = {
         attributes: ['name'],
       }, {
         model: products,
-        as: 'products'
+        as: 'products',
       }],
     });
 
