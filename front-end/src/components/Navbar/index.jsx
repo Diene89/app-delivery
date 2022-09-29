@@ -30,11 +30,12 @@ function Navbar() {
           </span>
         </div>
 
-        <div className="navbar-option">
-          <span data-testid="customer_products__element-navbar-link-orders">
-            MEUS PEDIDOS
-          </span>
-        </div>
+        <Link
+          to="/customer/orders"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          MEUS PEDIDOS
+        </Link>
 
         <div className="navbar-option">
           <span data-testid="customer_products__element-navbar-user-full-name">
