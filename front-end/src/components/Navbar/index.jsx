@@ -26,11 +26,12 @@ function Navbar() {
         <div className="navbar-options-container">
           { user.role === 'customer' && (
             <div>
-              <span
+              <Link
+                to="/customer/products"
                 data-testid="customer_products__element-navbar-link-products"
               >
                 PRODUTOS
-              </span>
+              </Link>
               <Link
                 to="/customer/orders"
                 data-testid="customer_products__element-navbar-link-orders"
@@ -40,11 +41,12 @@ function Navbar() {
             </div>) }
           { user.role === 'seller' && (
             <div>
-              <span
+              <Link
+                to="/seller/orders"
                 data-testid="customer_products__element-navbar-link-orders"
               >
                 PEDIDOS
-              </span>
+              </Link>
             </div>) }
           { user.role === 'administrator' && (
             <div>
