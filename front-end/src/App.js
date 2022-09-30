@@ -5,6 +5,8 @@ import Register from './pages/Register';
 import './App.css';
 import Products from './pages/Products';
 import Admin from './pages/Admin';
+import SellerOrders from './pages/SellerOrders';
+import SellerOrderDetails from './pages/SellerOrderDetails';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import OrdersDetails from './pages/OrdersDetails';
@@ -18,6 +20,8 @@ function App() {
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/customer/products" element={ <Products /> } />
         <Route exact path="/admin/manage" element={ <Admin /> } />
+        <Route exact path="/seller/orders/" element={ <SellerOrders /> } />
+        <Route exact path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/customer/orders" element={ <Orders /> } />
         <Route exact path="/customer/orders/:id" element={ <OrdersDetails /> } />

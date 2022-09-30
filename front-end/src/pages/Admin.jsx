@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ContainerAdmin from '../assets/styles/Admin';
 import requestAdmin, { getUsers, deleteUsers } from '../api/requestAdmin';
 import AdminTable from '../components/AdminTable';
+import Navbar from '../components/Navbar';
 
 function Admin() {
   const [userName, setUserName] = useState('');
@@ -102,6 +103,7 @@ function Admin() {
 
   return (
     <ContainerAdmin>
+      <Navbar />
       <div
         data-testid="admin_manage__element-invalid-register"
         className="admin_manage__error_container"

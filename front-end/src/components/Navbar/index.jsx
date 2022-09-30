@@ -7,7 +7,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const userData = async () => {
-    const userInfo = await JSON.parse(localStorage.getItem('user'));
+    const userInfo = JSON.parse(localStorage.getItem('user'));
     if (userInfo) setUser(userInfo);
   };
 
@@ -22,26 +22,45 @@ function Navbar() {
 
   return (
     <NavbarContainer>
-
-      <div className="navbar-options-container">
-        <div className="navbar-option">
-          <span data-testid="customer_products__element-navbar-link-products">
-            PRODUTOS
-          </span>
+      <div className="navbar-test">
+        <div className="navbar-options-container">
+          { user.role === 'customer' && (
+            <div>
+              <Link
+                to="/customer/products"
+                data-testid="customer_products__element-navbar-link-products"
+              >
+                PRODUTOS
+              </Link>
+              <Link
+                to="/customer/orders"
+                data-testid="customer_products__element-navbar-link-orders"
+              >
+                MEUS PEDIDOS
+              </Link>
+            </div>) }
+          { user.role === 'seller' && (
+            <div>
+              <Link
+                to="/seller/orders"
+                data-testid="customer_products__element-navbar-link-orders"
+              >
+                PEDIDOS
+              </Link>
+            </div>) }
+          { user.role === 'administrator' && (
+            <div>
+              <span
+                data-testid="customer_products__element-navbar-link-orders"
+              >
+                GERENCIAR USUÁRIOS
+              </span>
+            </div>) }
         </div>
 
-        <Link
-          to="/customer/orders"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          MEUS PEDIDOS
-        </Link>
-
-        <div className="navbar-option">
-          <span data-testid="customer_products__element-navbar-user-full-name">
-            { user.name }
-          </span>
-        </div>
+        <span data-testid="customer_products__element-navbar-user-full-name">
+          { user.name }
+        </span>
       </div>
 
       <button
