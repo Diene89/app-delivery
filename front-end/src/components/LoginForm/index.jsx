@@ -85,7 +85,7 @@ function LoginForm() {
         onClick={ loginHandle }
         type="button"
       >
-        <span className="login-form-login-title">Login</span>
+        <span className="login-form-login-btn-title">Login</span>
       </button>
 
       <button

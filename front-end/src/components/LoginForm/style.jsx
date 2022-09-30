@@ -4,7 +4,7 @@ const LoginFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 20;
+  z-index: 3;
 
   .login-form-label {
     display: flex;
@@ -47,7 +47,7 @@ const LoginFormContainer = styled.form`
     margin-bottom: 15px;
   }
 
-  .login-form-login-title {
+  .login-form-login-btn-title {
     color: #FFFFFF;
     font-size: 20px;
     font-weight: 700;
