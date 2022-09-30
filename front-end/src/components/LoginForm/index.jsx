@@ -23,6 +23,13 @@ function LoginForm() {
     navigate(path);
   }
 
+  useEffect(() => {
+    const verifyLogin = JSON.parse(localStorage.getItem('user'));
+
+    if (verifyLogin === null) navigate('/login');
+    if (verifyLogin && verifyLogin.role === 'customer') navigate('/customer/products');
+  }, []);
+
   const loginHandle = async () => {
     const response = await requestLogin({ email, password });
     if (response.message) {
