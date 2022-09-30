@@ -8,22 +8,8 @@ import SellerOrderDetailsContainer from '../assets/styles/SellerOrderDetails';
 function SellerOrderDetails() {
   const test = 'seller_order_details__element-order-details-label-delivery-status';
   const [order, setOrder] = useState();
-  const [disablePreparing, setDisablePreparing] = useState(false);
-  const [disableDispatch, setDisableDispatch] = useState(true);
   const [requestStatus, setRequestStatus] = useState();
   const { id } = useParams();
-
-  async function buttonDisable(status) {
-    console.log(status);
-    if (status === 'Preparando') {
-      setDisablePreparing(true);
-      setDisableDispatch(false);
-    }
-    if (status === 'Em Trânsito') {
-      setDisablePreparing(true);
-      setDisableDispatch(true);
-    }
-  }
 
   async function getOrderById() {
     const orderCustomer = await getSellerOrderById(id);
@@ -87,7 +73,7 @@ function SellerOrderDetails() {
               <button
                 className="order_details_button_preparing"
                 type="button"
-                disabled={ disablePreparing }
+                disabled={ order.status !== 'Pendente' }
                 data-testid="seller_order_details__button-preparing-check"
                 onClick={ () => {
                   updateStatus(order.status);
@@ -97,7 +83,7 @@ function SellerOrderDetails() {
               </button>
               <button
                 className="order_details_button_dispatch"
-                disabled={ disableDispatch }
+                disabled={ order.status !== 'Preparando' }
                 data-testid="seller_order_details__button-dispatch-check"
                 type="button"
                 onClick={ () => {
