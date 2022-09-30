@@ -41,11 +41,16 @@ function OrderDetail() {
 
         {
           ordersDetails && (
-            <p
-              data-testid="customer_order_details__element-order-total-price"
-            >
-              {`Total: ${ordersDetails.totalPrice}`}
-            </p>)
+            <span>
+              Total: R$
+              {' '}
+              <span
+                data-testid="customer_order_details__element-order-total-price"
+              >
+                { ordersDetails.totalPrice.toString().replace('.', ',') }
+              </span>
+            </span>
+          )
         }
       </OrdersDetails>
     </>

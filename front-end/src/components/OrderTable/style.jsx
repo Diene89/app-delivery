@@ -49,7 +49,7 @@ const OrderTableContainer = styled.div`
   }
 
   .total_price {
-    width: 140px;
+    width: 170px;
     float: right;
     margin-top: 20px;
     background-color: #036B52;
@@ -57,6 +57,7 @@ const OrderTableContainer = styled.div`
     padding: 15px;
     font-weight: 600;
     border-radius: 4px;
+    text-align: center;
   }
 `;
 

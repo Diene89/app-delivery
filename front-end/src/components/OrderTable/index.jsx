@@ -58,13 +58,15 @@ function OrderTable({ order }) {
           )) }
         </tbody>
       </table>
-      <div
-        className="total_price"
-        type="button"
-        data-testid="seller_order_details__element-order-total-price"
-      >
-        {`Total: R$ ${order.totalPrice.toString().replace('.', ',')}`}
-      </div>
+      <span className="total_price">
+        Total: R$
+        {' '}
+        <span
+          data-testid="seller_order_details__element-order-total-price"
+        >
+          { order.totalPrice.toString().replace('.', ',') }
+        </span>
+      </span>
     </OrderTableContainer>
   );
 }
