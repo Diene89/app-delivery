@@ -1,26 +1,27 @@
 import styled from 'styled-components';
 
-const LoginFormContainer = styled.form`
+const RegisterFormContainer = styled.form`
   display: flex;
   flex-direction: column;
+  margin-top: 25px;
   position: relative;
   z-index: 3;
 
-  .login-form-label {
+  .register-form-label {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center;
   }
 
-  .login-form-label-title {
+  .register-form-label-title {
     color: #1D2633;
     font-weight: 700;
     font-size: 22px;
     margin-bottom: 5px;
   }
 
-  .login-form-input {
+  .register-form-input {
     background-color: rgba(248, 252, 254, 0.25);
     border: 1px;
     border-radius: 50px;
@@ -32,11 +33,11 @@ const LoginFormContainer = styled.form`
     width: 350px;
   }
 
-  .login-form-input:focus-visible {
+  .register-form-input:focus-visible {
     outline: #7CD7FE auto 2px;
   }
 
-  .login-form-login-btn {
+  .register-form-login-btn {
     background: linear-gradient(180deg, #5C97CD 0%, #73AADD 50.52%, #48B3EF 100%);
     border: 1px solid #7CD7FE;
     border-radius: 12px;
@@ -47,22 +48,21 @@ const LoginFormContainer = styled.form`
     margin-bottom: 15px;
   }
 
-  .login-form-login-btn-title {
+  .register-form-login-btn:disabled {
+    background: #94abc0;
+    border: 1px solid #45b3ff9e;
+    cursor: default;
+  }
+
+  .register-form-login-btn:disabled > span {
+    color: #fff;
+  }
+
+  .register-form-login-btn-title {
     color: #FFFFFF;
     font-size: 20px;
     font-weight: 700;
   }
-
-  .login-form-register-btn {
-    align-self: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-    text-decoration: underline;
-    width: fit-content;
-  }
 `;
 
-export default LoginFormContainer;
+export default RegisterFormContainer;
