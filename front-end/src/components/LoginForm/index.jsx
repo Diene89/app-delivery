@@ -19,11 +19,6 @@ function LoginForm() {
     if (emailValidation && passwordValidation) setButtonDisabled(false);
   }, [email, password]);
 
-  useEffect(() => {
-    const verifyLogin = JSON.parse(localStorage.getItem('user'));
-    if (verifyLogin) navigate('/customer/products');
-  }, []);
-
   function navigateTo(path) {
     navigate(path);
   }
@@ -44,10 +39,14 @@ function LoginForm() {
         productCart: [],
       };
       localStorage.setItem('user', JSON.stringify(objUser));
-      if (role !== 'administrator') {
-        navigateTo('/customer/products');
-      } else {
+      if (role === 'administrator') {
         navigateTo('/admin/manage');
+      }
+      if (role === 'seller') {
+        navigateTo('/seller/orders');
+      }
+      if (role === 'customer') {
+        navigateTo('/customer/products');
       }
     }
   };
