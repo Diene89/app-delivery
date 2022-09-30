@@ -1,14 +1,32 @@
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import { updateOrder } from '../../api/requestCustomer';
 import ProductDetailsContainer from './style';
 
 function OrdersSection({ order }) {
   const { id, seller, saleDate, status } = order;
-  const datatest = 'customer_order_details__element-order-details-label-delivery-status';
+  const [syncStatus, setSyncStatus] = useState();
+  const datatest = 'customer_order_details__element-order-details-label';
 
   const handleChangeStatus = async () => {
     await updateOrder(id, 'Entregue');
+    setSyncStatus('Entregue');
   };
+
+  function formatDate() {
+    const ano = saleDate.split('-')[0];
+    const mes = saleDate.split('-')[1];
+    const diaHora = saleDate.split('-')[2];
+    const dia = diaHora.split('T')[0];
+    const data = `${dia}/${mes}/${ano}`;
+
+    return data;
+  }
+
+  useEffect(() => {
+    setSyncStatus(status);
+    console.log(status);
+  }, []);
 
   return (
     <ProductDetailsContainer>
@@ -17,9 +35,7 @@ function OrdersSection({ order }) {
       </h1>
       <div>
         <p
-          data-testid={
-            `customer_order_details__element-order-details-label-order-id${id}`
-          }
+          data-testid="customer_order_details__element-order-details-label-order-id"
         >
           { `Pedido ${id}`}
         </p>
@@ -31,17 +47,18 @@ function OrdersSection({ order }) {
         <p
           data-testid="customer_order_details__element-order-details-label-order-date"
         >
-          {saleDate}
+          { formatDate() }
         </p>
         <p
-          data-testid={ datatest }
+          data-testid={ `${datatest}-delivery-status` }
         >
-          {status}
+          {syncStatus}
         </p>
         <button
           type="button"
+          data-testid="customer_order_details__button-delivery-check"
           onClick={ handleChangeStatus }
-          disabled={ status !== 'Em Trânsito' }
+          disabled={ syncStatus !== 'Em Trânsito' }
         >
           MARCAR COMO ENTREGUE
         </button>
