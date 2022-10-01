@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import GlobalStyle from './assets/styles/global';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import './App.css';
 import Products from './pages/Products';
 import Admin from './pages/Admin';
 import SellerOrders from './pages/SellerOrders';
