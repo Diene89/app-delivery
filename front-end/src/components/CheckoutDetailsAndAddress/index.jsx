@@ -106,7 +106,7 @@ function CheckoutDetailsAndAddress() {
             onClick={ handleCompleteCheckout }
             type="button"
           >
-            <span>FINALIZAR PEDIDO</span>
+            <span>Finalizar Pedido</span>
           </button>
         </div>
       </div>

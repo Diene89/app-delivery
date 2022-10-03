@@ -61,7 +61,7 @@ function CheckoutOrders() {
 
         <div className="checkout-orders-amount-container">
           <div className="checkout-orders-amount">
-            R$:&nbsp;
+            Total: R$&nbsp;
             <span data-testid="customer_checkout__element-order-total-price">
               {cartAmount.toLocaleString(
                 'pt-BR',
