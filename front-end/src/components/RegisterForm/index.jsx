@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import requestRegister from '../../api/requestRegister';
+import requestLogin from '../../api/requestLogin';
 import AppContext from '../../context/AppContext';
 import RegisterFormContainer from './style';
 
@@ -19,6 +20,12 @@ function RegisterForm() {
     setRegisterErrorPassword,
     setRegisterErrorUserExist,
   } = useContext(AppContext);
+
+  const paths = {
+    administrator: '/admin/manage',
+    seller: '/seller/orders',
+    customer: '/customer/products',
+  };
 
   const navigate = useNavigate();
 
@@ -60,17 +67,36 @@ function RegisterForm() {
       return;
     }
 
-    const userInfo = await requestRegister(
+    const registerResponse = await requestRegister(
       { name: registerName, email: registerEmail, password: registerPassword },
     );
 
-    if (userInfo.message) {
+    if (registerResponse.message) {
       setRegisterErrorUserExist(true);
-    } else {
-      localStorage.setItem('user', JSON.stringify(userInfo));
-
-      navigate('/customer/products');
     }
+
+    const {
+      id,
+      name,
+      email,
+      role,
+      token,
+    } = await requestLogin(
+      { email: registerEmail, password: registerPassword },
+    );
+
+    const userInfos = {
+      id,
+      name,
+      email,
+      role,
+      token,
+      productCart: [],
+    };
+
+    localStorage.setItem('user', JSON.stringify(userInfos));
+
+    navigate(paths[role]);
   }
 
   useEffect(() => {
