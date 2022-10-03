@@ -22,6 +22,7 @@ const CheckoutTableContainer = styled.table`
     position: sticky;
     text-align: center;
     top: 0;
+    z-index: 1;
   }
 
   .checkout-table-body {
