@@ -4,15 +4,16 @@ const ContainerDetailsAndAddress = styled.div`
   display: flex;
   flex-direction: column;
   height: 280px;
+  margin-top: 15px;
   width: 80%;
 
   .checkout-details-title {
     color: #343434;
     font-family: Roboto, sans-serif;
-    font-size: 30px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 42px;
+    line-height: 30px;
   }
 
   .checkout-details-container {
@@ -70,27 +71,27 @@ const ContainerDetailsAndAddress = styled.div`
   }
 
   .checkout-details-finish-button-container > button {
-    border: none;
-    color: #F2FFFC;
-    cursor: pointer;
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 36px;
-    display: flex;
     align-items: center;
-    text-align: center;
-    background-color: #036B52;
-    border-radius: 10px;
+    background: linear-gradient(180deg, #5C97CD 0%, #73AADD 50.52%, #48B3EF 100%);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px 1px rgb(0 0 0 / 25%);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
     height: fit-content;
-    padding: 10px 20px;
+    line-height: 36px;
+    padding: 5px 50px;
+    text-align: center;
     width: fit-content;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  .checkout-details-finish-button-container > button > span {
-    text-shadow: 2px 2px #000000;
+  .checkout-details-finish-button-container > button:hover {
+    background: linear-gradient(180deg, #5C97CD 0%, #438fd6 50.52%, #1a9eeb 100%);
   }
 `;
 

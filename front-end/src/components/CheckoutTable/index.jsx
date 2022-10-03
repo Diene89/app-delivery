@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import CheckoutTableContainer from './style';
+import trashIcon from '../../assets/images/trash-icon.svg';
 
 function CheckoutTable({ items, removeItem }) {
   return (
@@ -107,7 +108,12 @@ function CheckoutTable({ items, removeItem }) {
                     removeItem(idToRemove);
                   } }
                 >
-                  Remover
+                  <img
+                    alt="Ícone de lixeira para representar o botão de
+                        remover item da lista de compra."
+                    className="checkout-table-td-button-icon"
+                    src={ trashIcon }
+                  />
                 </button>
               </td>
             </tr>

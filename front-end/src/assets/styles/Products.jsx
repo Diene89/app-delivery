@@ -42,6 +42,7 @@ const ContainerProducts = styled.div`
     border-radius: 4px;
     box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.25);
     color: #fff;
+    cursor: pointer;
     font-size: 24px;
     height: fit-content;
     margin-right: 110px;

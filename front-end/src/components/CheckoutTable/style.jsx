@@ -30,20 +30,22 @@ const CheckoutTableContainer = styled.table`
   }
 
   .checkout-table-body-td-item {
-    background-color: #2FC18C;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    color: #001813;
-    font-weight: 500;
+    background: linear-gradient(180deg, #5C97CD 0%, #73AADD 50.52%, #48B3EF 100%);
+    border-radius: 4px 0px 0px 4px;
+    color: #fff;
     font-size: 20px;
+    font-weight: 400;
     line-height: 26px;
   }
 
   .checkout-table-body-td-name {
-    background-color: #EAF1EF;
-    color: #001813;
-    font-weight: 400;
+    background-color: #fff;
+    border-bottom: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+    border-top: 1px solid #8b8b8b;
+    color: #181D3A;
     font-size: 20px;
+    font-weight: 500;
     line-height: 26px;
     padding-left: 10px;
     max-width: 300px;
@@ -54,38 +56,48 @@ const CheckoutTableContainer = styled.table`
   }
 
   .checkout-table-body-td-quantity {
-    background-color: #036B52;
-    color: #F2FFFC;
-    font-weight: 500;
+    background-color: #fff;
+    border-bottom: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+    border-top: 1px solid #8b8b8b;
+    color: #181D3A;
     font-size: 20px;
+    font-weight: 500;
     line-height: 26px;
-    text-shadow: 2px 2px #000000;
   }
 
   .checkout-table-body-td-price {
-    background-color: #421981;
-    color: #F2FFFC;
-    font-weight: 500;
+    background-color: #fff;
+    border-bottom: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+    border-top: 1px solid #8b8b8b;
+    color: #181D3A;
     font-size: 20px;
+    font-weight: 500;
     line-height: 26px;
-    text-shadow: 2px 2px #000000;
   }
 
   .checkout-table-body-td-subtotal {
-    background-color: #056CF9;
-    color: #F2FFFC;
-    font-weight: 500;
+    background-color: #fff;
+    border-bottom: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+    border-top: 1px solid #8b8b8b;
+    color: #181D3A;
     font-size: 20px;
+    font-weight: 500;
     line-height: 26px;
-    text-shadow: 2px 2px #000000;
   }
 
   .checkout-table-body-td-button {
   }
 
   .checkout-table-body-td-button > button {
-    background-color: #2FC18C;
+    background: linear-gradient(180deg, #FF9457 0%, #FF7B31 48.96%, #FF6A15 100%);
     border: none;
+    border-bottom: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+    border-top: 1px solid #8b8b8b;
+    border-radius: 0px 4px 4px 0px;
     color: #F2FFFC;
     cursor: pointer;
     font-weight: 500;
@@ -99,7 +111,13 @@ const CheckoutTableContainer = styled.table`
   }
 
   .checkout-table-body-td-button > button:hover {
-    background-color: #29a276;
+    background: linear-gradient(180deg, #FF9457 0%, #ff6309 48.96%, #e25300 100%);
+  }
+
+  .checkout-table-td-button-icon {
+    position: relative;
+    top: 3px;
+    width: 22px;
   }
 `;
 
