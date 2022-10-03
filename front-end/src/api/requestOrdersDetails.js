@@ -7,11 +7,9 @@ const requestOrdersDetails = async (token, id) => {
         Authorization: token,
       },
     });
-    if (!response.ok) {
-      const message = `Erro: ${response.status} - ${response.statusText}`;
-      throw new Error(message);
-    }
+
     const data = await response.json();
+
     return data;
   } catch (err) {
     console.log(err);
