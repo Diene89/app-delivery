@@ -12,7 +12,7 @@ const ContainerOrders = styled.div`
     border: 1px solid #B1C2BE;
     border-radius: 4px;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.25);
-    height: 100%;
+    height: 280px;
     max-width: 1280px;
     min-width: 795px;
     padding: 15px 15px 5px;
@@ -31,7 +31,7 @@ const ContainerOrders = styled.div`
 
   .checkout-orders-table-container {
     padding-right: 7px;
-    max-height: 200px;
+    max-height: 205px;
     overflow-y: scroll;
   }
 
@@ -73,6 +73,36 @@ const ContainerOrders = styled.div`
     padding: 5px 30px;
     text-align: center;
     width: fit-content;
+  }
+
+  @media screen and (min-height: 750px) {
+    .checkout-orders-container {
+      height: 400px;
+    }
+
+    .checkout-orders-table-container {
+      max-height: 325px;
+    }
+  }
+
+  @media screen and (min-height: 900px) {
+    .checkout-orders-container {
+      height: 530px;
+    }
+
+    .checkout-orders-table-container {
+      max-height: 450px;
+    }
+  }
+
+  @media screen and (min-height: 1080px) {
+    .checkout-orders-container {
+      height: 700px;
+    }
+
+    .checkout-orders-table-container {
+      max-height: 625px;
+    }
   }
 `;
 
