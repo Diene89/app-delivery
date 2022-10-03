@@ -44,7 +44,6 @@ const OrdersDetailsContainer = styled.div`
     font-size: 16px;
     font-weight: 500;
     padding: 0 20px;
-    text-transform: uppercase;
   }
 
   .order-details-infos-status-complete {
@@ -54,7 +53,6 @@ const OrdersDetailsContainer = styled.div`
     font-size: 16px;
     font-weight: 500;
     padding: 0 20px;
-    text-transform: uppercase;
   }
 
   .order-details-infos-btn {

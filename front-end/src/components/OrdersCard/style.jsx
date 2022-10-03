@@ -51,7 +51,6 @@ const OrdersCardContainer = styled.div`
     font-weight: 500;
     height: 100%;
     padding: 0 10px;
-    text-transform: uppercase;
   }
 
   .orders-order-card-date-and-amount {
