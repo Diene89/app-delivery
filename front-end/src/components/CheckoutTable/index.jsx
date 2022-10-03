@@ -101,17 +101,16 @@ function CheckoutTable({ items, removeItem }) {
               >
                 <button
                   id={ id }
+                  onClick={ removeItem }
                   type="button"
-                  onClick={ ({ target }) => {
-                    const { id: idToRemove } = target;
-
-                    removeItem(idToRemove);
-                  } }
                 >
                   <img
                     alt="Ícone de lixeira para representar o botão de
                         remover item da lista de compra."
+                    aria-hidden="true"
                     className="checkout-table-td-button-icon"
+                    id={ id }
+                    onClick={ removeItem }
                     src={ trashIcon }
                   />
                 </button>

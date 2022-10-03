@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ContainerOrders = styled.div`
+const CheckoutOrdersContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: fit-content;
@@ -106,4 +106,4 @@ const ContainerOrders = styled.div`
   }
 `;
 
-export default ContainerOrders;
+export default CheckoutOrdersContainer;

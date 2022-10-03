@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import CheckoutTable from '../CheckoutTable';
-import ContainerOrders from './style';
+import CheckoutOrdersContainer from './style';
 
 function CheckoutOrders() {
   const [userShopCart, setUserShopCart] = useState([]);
@@ -36,7 +36,9 @@ function CheckoutOrders() {
     localStorage.setItem('user', JSON.stringify(userWithNewAmount));
   }, [cartAmount]);
 
-  const removeItem = (idToRemove) => {
+  const removeItem = (event) => {
+    const { id: idToRemove } = event.target;
+
     const userInfos = JSON.parse(localStorage.getItem('user'));
 
     const newCart = userShopCart.filter(({ id }) => Number(id) !== Number(idToRemove));
@@ -51,7 +53,7 @@ function CheckoutOrders() {
   };
 
   return (
-    <ContainerOrders>
+    <CheckoutOrdersContainer>
       <h2 className="checkout-orders-title">Finalizar Pedido</h2>
 
       <div className="checkout-orders-container">
@@ -71,7 +73,7 @@ function CheckoutOrders() {
           </div>
         </div>
       </div>
-    </ContainerOrders>
+    </CheckoutOrdersContainer>
   );
 }
 

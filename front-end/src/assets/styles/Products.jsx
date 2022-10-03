@@ -53,6 +53,11 @@ const ContainerProducts = styled.div`
     width: fit-content;
   }
 
+  .total-button:disabled {
+    background: linear-gradient(180deg, #c4c4c4 0%, #a3a3a3 50.52%, #979797 100%);
+    cursor: default;
+  }
+
   @media screen and (min-height: 721px) {
     .products-section {
       height: 80%;
