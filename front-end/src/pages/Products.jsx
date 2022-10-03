@@ -135,7 +135,8 @@ function Products() {
         disabled={ total === 0 }
       >
         <span data-testid="customer_products__checkout-bottom-value">
-          { total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+          { `Ver carrinho: \
+          ${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}` }
         </span>
       </button>
     </ContainerProducts>

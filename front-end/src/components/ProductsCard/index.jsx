@@ -39,40 +39,60 @@ function ProductsCard({
   return (
     <ProductsCardContainer>
       <img
-        src={ urlImage }
         alt={ name }
+        className="product-card-img"
         data-testid={ `customer_products__img-card-bg-image-${count}` }
+        src={ urlImage }
       />
-      <h1
-        data-testid={ `customer_products__element-card-price-${count}` }
-      >
-        { Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-      </h1>
-      <h2
-        data-testid={ `customer_products__element-card-title-${count}` }
-      >
-        { name }
-      </h2>
-      <button
-        type="button"
-        data-testid={ `customer_products__button-card-rm-item-${count}` }
-        onClick={ subButton }
-      >
-        -
-      </button>
-      <input
-        type="text"
-        value={ quantity }
-        onChange={ (e) => setQuantity(Number(e.target.value)) }
-        data-testid={ `customer_products__input-card-quantity-${count}` }
-      />
-      <button
-        type="button"
-        data-testid={ `customer_products__button-card-add-item-${count}` }
-        onClick={ sumButton }
-      >
-        +
-      </button>
+
+      <div className="product-card-bottom-infos">
+        <span
+          className="product-card-price"
+          data-testid={ `customer_products__element-card-price-${count}` }
+        >
+          { Number(price)
+            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+        </span>
+
+        <span
+          className="products-card-title"
+          data-testid={ `customer_products__element-card-title-${count}` }
+          title={ name }
+        >
+          { name }
+        </span>
+
+        <div className="product-card-btn-container">
+          <button
+            className="product-card-decrease-btn"
+            data-testid={ `customer_products__button-card-rm-item-${count}` }
+            disabled={ quantity === 0 }
+            onClick={ subButton }
+            type="button"
+          >
+            <span>-</span>
+          </button>
+
+          <input
+            className="product-card-quantity-input"
+            data-testid={ `customer_products__input-card-quantity-${count}` }
+            onChange={ (e) => setQuantity(Number(e.target.value)) }
+            type="text"
+            value={ quantity }
+          />
+
+          <button
+            className="product-card-increase-btn"
+            data-testid={ `customer_products__button-card-add-item-${count}` }
+            onClick={ sumButton }
+            type="button"
+          >
+            +
+          </button>
+        </div>
+
+      </div>
+
     </ProductsCardContainer>
   );
 }
