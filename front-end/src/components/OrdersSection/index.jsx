@@ -10,57 +10,83 @@ function OrdersSection({ order }) {
 
   const handleChangeStatus = async () => {
     await updateOrder(id, 'Entregue');
+
     setSyncStatus('Entregue');
   };
 
   function formatDate() {
-    const ano = saleDate.split('-')[0];
-    const mes = saleDate.split('-')[1];
-    const diaHora = saleDate.split('-')[2];
-    const dia = diaHora.split('T')[0];
-    const data = `${dia}/${mes}/${ano}`;
+    const date = new Date(saleDate);
+    const dateOptions = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    };
+    const formatedDate = new Intl.DateTimeFormat('pt-br', dateOptions).format(date);
 
-    return data;
+    return formatedDate;
+  }
+
+  function completeOrderId(orderId) {
+    const MAX_ID_LENGTH = 3;
+    const formats = {
+      1: '000',
+      2: '00',
+      3: '0',
+    };
+
+    const orderIdLength = orderId.toLocaleString().length;
+    const newOrderId = orderIdLength <= MAX_ID_LENGTH
+      ? `${formats[orderIdLength]}${orderId}` : orderId;
+
+    return newOrderId;
   }
 
   useEffect(() => {
     setSyncStatus(status);
-    console.log(status);
   }, []);
 
   return (
     <ProductDetailsContainer>
-      <h1>
-        Detalhe do Pedido
-      </h1>
-      <div>
-        <p
-          data-testid="customer_order_details__element-order-details-label-order-id"
-        >
-          { `Pedido ${id}`}
-        </p>
-        <p
-          data-testid="customer_order_details__element-order-details-label-seller-name"
-        >
-          {`P. Vend: ${seller.name}`}
-        </p>
-        <p
+      <div className="order-details-infos-container">
+        <div className="order-details-infos-id-and-seller">
+          <span
+            className="order-details-infos-id"
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            { `PEDIDO ${completeOrderId(id)};`}
+          </span>
+
+          <span
+            className="order-details-infos-name"
+            data-testid="customer_order_details__element-order-details-label-seller-name"
+          >
+            {`P. Vend: ${seller.name}`}
+          </span>
+        </div>
+
+        <span
+          className="order-details-infos-date"
           data-testid="customer_order_details__element-order-details-label-order-date"
         >
           { formatDate() }
-        </p>
-        <p
+        </span>
+
+        <span
+          className={ syncStatus === 'Entregue'
+            ? 'order-details-infos-status-complete' : 'order-details-infos-status' }
           data-testid={ `${datatest}-delivery-status` }
         >
           {syncStatus}
-        </p>
+        </span>
+
         <button
-          type="button"
+          className="order-details-infos-btn"
           data-testid="customer_order_details__button-delivery-check"
+          disabled={ syncStatus !== 'Em Trânsito' || syncStatus === 'Entregue' }
           onClick={ handleChangeStatus }
-          disabled={ syncStatus !== 'Em Trânsito' }
+          type="button"
         >
-          MARCAR COMO ENTREGUE
+          {syncStatus === 'Entregue' ? 'PEDIDO ENTREGUE' : 'MARCAR COMO ENTREGUE'}
         </button>
       </div>
     </ProductDetailsContainer>
