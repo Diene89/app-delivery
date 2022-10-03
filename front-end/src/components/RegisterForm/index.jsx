@@ -72,7 +72,7 @@ function RegisterForm() {
     );
 
     if (registerResponse.message) {
-      setRegisterErrorUserExist(true);
+      return setRegisterErrorUserExist(true);
     }
 
     const {
