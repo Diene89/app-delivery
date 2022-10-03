@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import requestOrders from '../api/requestCustomer';
+import ContainerOrders from '../assets/styles/Orders';
 import OrdersCard from '../components/OrdersCard';
 
 function Orders() {
@@ -17,13 +18,16 @@ function Orders() {
   }, []);
 
   return (
-    <>
+    <ContainerOrders>
       <Navbar />
+
       <h1>Página de Pedidos</h1>
+
       <p>
         {'Componente apenas para passar no requisito 20, \
           que precisava redirecionar para alguma página.'}
       </p>
+
       <div>
         {
           orders.message ? (<p>{orders.message}</p>) : orders.map((item, index) => (
@@ -37,7 +41,7 @@ function Orders() {
           ))
         }
       </div>
-    </>
+    </ContainerOrders>
   );
 }
 

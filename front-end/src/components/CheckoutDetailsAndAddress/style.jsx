@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ContainerDetailsAndAddress = styled.div`
   display: flex;
   flex-direction: column;
-  height: 280px;
+  height: fit-content;
   margin-top: 15px;
   width: 80%;
 

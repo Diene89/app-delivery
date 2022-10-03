@@ -5,6 +5,8 @@ const ContainerProducts = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  justify-content: space-between;
+  padding-bottom: 10px;
   position: relative;
   width: 100vw;
 
@@ -15,7 +17,7 @@ const ContainerProducts = styled.div`
     gap: 20px;
     justify-content: center;
     margin-top: 20px;
-    max-height: 435px;
+    height: 435px;
     overflow-y: scroll;
     padding: 5px 0;
     width: 85%;
@@ -49,6 +51,17 @@ const ContainerProducts = styled.div`
     margin-top: 17px;
     padding: 10px 15px;
     width: fit-content;
+  }
+
+  .total-button:disabled {
+    background: linear-gradient(180deg, #c4c4c4 0%, #a3a3a3 50.52%, #979797 100%);
+    cursor: default;
+  }
+
+  @media screen and (min-height: 721px) {
+    .products-section {
+      height: 80%;
+    }
   }
 `;
 
