@@ -10,6 +10,7 @@ function Orders() {
   const getAllOrders = async () => {
     const { token } = await JSON.parse(localStorage.getItem('user'));
     const data = await requestOrders(token);
+
     setOrders(data);
   };
 
@@ -21,25 +22,20 @@ function Orders() {
     <ContainerOrders>
       <Navbar />
 
-      <h1>Página de Pedidos</h1>
+      <div className="orders-cards-container">
+        {orders.message && <p>{orders.message}</p>}
 
-      <p>
-        {'Componente apenas para passar no requisito 20, \
-          que precisava redirecionar para alguma página.'}
-      </p>
-
-      <div>
-        {
-          orders.message ? (<p>{orders.message}</p>) : orders.map((item, index) => (
+        {!orders.message && (
+          orders.map((item, index) => (
             <OrdersCard
               id={ item.id }
               status={ item.status }
               totalPrice={ item.totalPrice }
               saleDate={ item.saleDate }
-              key={ index + 1 }
+              key={ `${item.id}__${index}` }
             />
           ))
-        }
+        )}
       </div>
     </ContainerOrders>
   );

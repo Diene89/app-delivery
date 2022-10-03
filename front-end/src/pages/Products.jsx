@@ -13,6 +13,7 @@ function Products() {
 
   const getProducts = async () => {
     const data = await requestProducts();
+
     setProducts(data);
   };
 
@@ -22,19 +23,24 @@ function Products() {
 
   const totalPrice = async () => {
     const cartInfo = await JSON.parse(localStorage.getItem('user'));
+
     let tempTotal = 0;
+
     cartInfo.productCart.forEach((item) => {
       tempTotal += (item.quantity * item.price);
     });
+
     setTotal(tempTotal);
   };
 
   useEffect(() => {
-    getProducts();
     async function userData() {
       const userInfo = await JSON.parse(localStorage.getItem('user'));
-      if (!userInfo.token) navigateTo('/login');
+
+      if (!userInfo) return navigateTo('/login');
     }
+
+    getProducts();
     userData();
   }, []);
 
