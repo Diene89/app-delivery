@@ -66,7 +66,9 @@ function CheckoutOrders() {
       return setIsVoucherInvalid(true);
     }
 
-    const newAmount = cartAmount * (checkVoucher.rebate / 100);
+    const amountDiscount = cartAmount * (checkVoucher.rebate / 100);
+
+    const newAmount = cartAmount - amountDiscount;
 
     setCartAmountWithVoucher(newAmount);
 

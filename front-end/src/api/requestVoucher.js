@@ -2,7 +2,7 @@ async function requestVoucher(voucher) {
   try {
     const response = await fetch('http://localhost:3001/voucher', {
       method: 'POST',
-      body: JSON.stringify(voucher),
+      body: JSON.stringify({ company: voucher }),
       headers: {
         'Content-Type': 'application/json',
       },
