@@ -10,6 +10,7 @@ const adminRoute = require('../routes/admin.route');
 const sellerRoute = require('../routes/seller.route');
 const middlewareError = require('../middlewares/errors');
 const sellersRoute = require('../routes/sellers.route');
+const couponsRoute = require('../routes/coupons.route');
 
 const app = express();
 app.use(cors());
@@ -22,6 +23,7 @@ app.use('/customer', productsRoute, salesRoute);
 app.use('/admin', adminRoute);
 app.use('/seller/orders', sellerRoute);
 app.use('/sellers', sellersRoute);
+app.use('/voucher', couponsRoute);
 
 app.use(middlewareError);
 
