@@ -1,76 +1,69 @@
 import styled from 'styled-components';
 
 const ContainerAdmin = styled.div`
-  width: 100vw;
-  height: 100vh;
+  align-items: center;
+  background-color: #F5F6F6;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 0.5rem;
-  margin-left: 1rem;
+  height: 100vh;
+  justify-content: space-between;
+  padding-bottom: 30px;
+  width: 100vw;
 
-  .formAdmin {
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(191,219,213,0.9);
-    -webkit-box-shadow: 0 10px 8px 1px #b7b9b9e5;
-    box-shadow: 0 10px 8px 1px #b7b9b9e5;
-    width: 90vw;
-  }
-
-  .admin-container {
+  .admin-title-and-form-container {
     display: flex;
     flex-direction: column;
-    margin: 0.5rem;
-    width: 70%;
-  }
-
-  .admin-input {
-    padding: 0.5rem;
-  }
-
-  .admin-input-span {
-    margin-bottom: 0.2rem;
-  }
-
-  .admin-button {
-    width: 110px;
-    height: 35px;
-    padding: 10px;
-    background: #036B52;
-    border-radius: 8px;
-    border: none;
-    margin-top: 1.1rem;
-    margin-right: 1rem ;
-    margin-left: 0.7rem ;
-    color: #F2FFFC;
-  }
-
-  .admin-button:disabled {
-    opacity: 0.7;
+    width: 90%;
   }
 
   .admin_manage__error_container {
-    width: 90vw;
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 90vw;
   }
 
   .admin_manage__error_span {
-    font-size: small;
     color: red;
+    font-size: small;
+  }
+
+  .admin-title {
+    color: #181D3A;
+    font-family: Roboto;
+    font-size: 32px;
+    line-height: 32px;
+    padding-left: 7px;
   }
 
   .admin_manage__table-container{
-    width: 90vw;
-    margin-top: 15px;
+    height: 330px;
+    width: 90%;
   }
 
+  .admin-table-container {
+    box-shadow: 2px 4px 8px 0px #919191;
+    background: #fff;
+    border-radius: 4px;
+    height: 300px;
+    margin-top: 0.5rem;
+    overflow-y: scroll;
+    padding: 0 15px;
+  }
+
+  .admin-table-container::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .admin-table-container::-webkit-scrollbar-track {
+    background: #fafafa;
+  }
+
+  .admin-table-container::-webkit-scrollbar-thumb {
+    background-color: #73aadd;
+    border: 3px none #ffffff;
+    border-radius: 10px;
+  }
 `;
 
 export default ContainerAdmin;
