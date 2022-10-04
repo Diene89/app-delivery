@@ -28,23 +28,25 @@ const SellerOrderDetailsContainer = styled.div`
     margin-left: 15px;
   }
 
-  /* .order_details_button_preparing {
-    display: ${(props) => {
+  .order_details_button_preparing {
+    cursor: pointer;
+    /*display: ${(props) => {
     if (props.statusColor === 'Pendente') {
       return 'inLine';
     }
     return 'none';
-  }};
+  }}; */
   }
 
   .order_details_button_dispatch {
-    display: ${(props) => {
+    cursor: pointer;
+    /* display: ${(props) => {
     if (props.statusColor === 'Preparando') {
       return 'inLine';
     }
     return 'none';
-  }};
-  } */
+  }}; */
+  }
   
   button {
     margin: 10px;

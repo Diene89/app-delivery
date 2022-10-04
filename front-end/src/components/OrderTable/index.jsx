@@ -8,47 +8,47 @@ function OrderTable({ order }) {
     <OrderTableContainer>
       <table>
         <thead>
-          <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Subtotal</th>
+          <tr className="checkout-table-head">
+            <th className="checkout-table-head-item">Item</th>
+            <th className="checkout-table-head-item">Descrição</th>
+            <th className="checkout-table-head-item">Quantidade</th>
+            <th className="checkout-table-head-item">Valor Unitário</th>
+            <th className="checkout-table-head-item">Subtotal</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="checkout-table-body">
           { products && products.map((product, index) => (
             <tr key={ product.id }>
               <th
-                className="product-item"
+                className="checkout-table-body-td-item"
                 data-testid={ `
                 seller_order_details__element-order-table-item-number-${index}` }
               >
                 {index + 1}
               </th>
               <th
-                className="product-nome"
+                className="checkout-table-body-td-name"
                 data-testid={ `
                 seller_order_details__element-order-table-name-${index}` }
               >
                 {product.name}
               </th>
               <th
-                className="product-quantity"
+                className="checkout-table-body-td-quantity"
                 data-testid={ `
                 seller_order_details__element-order-table-quantity-${index}` }
               >
                 {product.salesProducts.quantity}
               </th>
               <th
-                className="product-price"
+                className="checkout-table-body-td-price"
                 data-testid={ `
                 seller_order_details__element-order-table-unit-price-${index}` }
               >
                 {product.price}
               </th>
               <th
-                className="product-subtotal"
+                className="checkout-table-body-td-subtotal"
                 data-testid={ `
                 seller_order_details__element-order-table-sub-total-${index}` }
               >
@@ -58,7 +58,7 @@ function OrderTable({ order }) {
           )) }
         </tbody>
       </table>
-      <span className="total_price">
+      <span className="order-details-totalprice">
         Total: R$
         {' '}
         <span

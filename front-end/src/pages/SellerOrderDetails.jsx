@@ -47,7 +47,6 @@ function SellerOrderDetails() {
     <>
       <Navbar />
       <SellerOrderDetailsContainer statusColor={ order && order.status }>
-        <h1>Detalhe do pedido</h1>
         { order && (
           <div className="order_details_container">
             <div className="order_details_status">
