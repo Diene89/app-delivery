@@ -9,7 +9,7 @@ const AdminFormContainer = styled.div`
   justify-content: center;
   margin-top: 0.5rem;
   padding: 0.5rem;
-  width: 90vw;
+  width: 100%;
 
   .admin-input-container {
     display: flex;

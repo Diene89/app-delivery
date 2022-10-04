@@ -13,6 +13,7 @@ const ContainerAdmin = styled.div`
   .admin-title-and-form-container {
     display: flex;
     flex-direction: column;
+    max-width: 1750px;
     width: 90%;
   }
 
@@ -20,7 +21,7 @@ const ContainerAdmin = styled.div`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    width: 90vw;
+    width: 100%;
   }
 
   .admin_manage__error_span {
@@ -36,8 +37,9 @@ const ContainerAdmin = styled.div`
     padding-left: 7px;
   }
 
-  .admin_manage__table-container{
+  .admin_manage__table-container {
     height: 330px;
+    max-width: 1750px;
     width: 90%;
   }
 
@@ -63,6 +65,36 @@ const ContainerAdmin = styled.div`
     background-color: #73aadd;
     border: 3px none #ffffff;
     border-radius: 10px;
+  }
+
+  @media screen and (min-height: 720px) {
+    .admin_manage__table-container {
+      height: 430px;
+    }
+
+    .admin-table-container {
+      height: 400px;
+    }
+  }
+
+  @media screen and (min-height: 900px) {
+    .admin_manage__table-container {
+      height: 590px;
+    }
+
+    .admin-table-container {
+      height: 560px;
+    }
+  }
+
+  @media screen and (min-height: 1080px) {
+    .admin_manage__table-container {
+      height: 780px;
+    }
+
+    .admin-table-container {
+      height: 750px;
+    }
   }
 `;
 
