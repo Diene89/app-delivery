@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import loginBg from '../images/login-bg.jpg';
+// import loginBg from '../images/login-bg.jpg';
+import bottle from '../images/bottle.jpg';
 
 const LoginContainer = styled.div`
   align-items: center;
-  background-image: url(${loginBg});
+  background-image: url(${bottle});
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -40,6 +41,7 @@ const LoginContainer = styled.div`
   .login-title {
     font-size: 32px;
     margin-bottom: 20px;
+    width: 290px;
   }
 `;
 

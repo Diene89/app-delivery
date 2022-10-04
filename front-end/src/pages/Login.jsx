@@ -1,6 +1,7 @@
 import LoginContainer from '../assets/styles/Login';
 import appLogo from '../assets/images/app-logo.gif';
 import LoginForm from '../components/LoginForm';
+import logo from '../assets/images/logo.png';
 
 function Login() {
   return (
@@ -13,7 +14,11 @@ function Login() {
           src={ appLogo }
         />
 
-        <h1 className="login-title">Nome da aplicação</h1>
+        <img
+          className="login-title"
+          src={ logo }
+          alt="Gelada Express. Pediu, chegou!"
+        />
 
         <LoginForm />
       </div>
