@@ -59,6 +59,7 @@ function Navbar() {
       { user.role === 'administrator' && (
         <div className="navbar-options-container">
           <span
+            className="navbar-title"
             data-testid="customer_products__element-navbar-link-orders"
           >
             Gerenciar Usuários

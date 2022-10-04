@@ -14,6 +14,12 @@ const NavbarContainer = styled.div`
     justify-content: space-evenly;
   }
 
+  .navbar-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
   .navbar-options-container a {
     color: #fff;
     display: flex;
