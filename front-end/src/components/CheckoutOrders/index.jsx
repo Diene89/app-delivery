@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
+import requestVoucher from '../../api/requestVoucher';
 import CheckoutTable from '../CheckoutTable';
 import CheckoutOrdersContainer from './style';
 
 function CheckoutOrders() {
   const [userShopCart, setUserShopCart] = useState([]);
   const [cartAmount, setCartAmount] = useState(0);
+  const [isVoucherInvalid, setIsVoucherInvalid] = useState(false);
+  const [voucher, setVoucher] = useState(0);
+  const [cartAmountWithVoucher, setCartAmountWithVoucher] = useState(0);
+  const [voucherApplied, setVoucherApplied] = useState(false);
 
   useEffect(() => {
     const storagedCart = JSON.parse(localStorage.getItem('user'));
@@ -52,6 +57,24 @@ function CheckoutOrders() {
     setUserShopCart(newCart);
   };
 
+  async function handleApplyVoucher() {
+    setIsVoucherInvalid(false);
+
+    const checkVoucher = await requestVoucher(voucher);
+
+    if (checkVoucher.message) {
+      return setIsVoucherInvalid(true);
+    }
+
+    const amountDiscount = cartAmount * (checkVoucher.rebate / 100);
+
+    const newAmount = cartAmount - amountDiscount;
+
+    setCartAmountWithVoucher(newAmount);
+
+    return setVoucherApplied(true);
+  }
+
   return (
     <CheckoutOrdersContainer>
       <h2 className="checkout-orders-title">Finalizar Pedido</h2>
@@ -61,16 +84,56 @@ function CheckoutOrders() {
           <CheckoutTable items={ userShopCart } removeItem={ removeItem } />
         </div>
 
-        <div className="checkout-orders-amount-container">
-          <div className="checkout-orders-amount">
-            Total: R$&nbsp;
-            <span data-testid="customer_checkout__element-order-total-price">
-              {cartAmount.toLocaleString(
-                'pt-BR',
-                { minimumFractionDigits: 2, maximumFractionDigits: 2 },
-              )}
-            </span>
+        <div className="checkout-orders-voucher-and-amount-container">
+          <div className="checkout-orders-voucher">
+            <input
+              className="checkout-orders-voucher-input"
+              placeholder="Digite seu cupom"
+              onChange={ ({ target }) => {
+                const voucherLowerCase = target.value.toLowerCase();
+
+                setVoucher(voucherLowerCase);
+              } }
+              type="text"
+            />
+
+            <button
+              className="checkout-orders-voucher-btn"
+              onClick={ handleApplyVoucher }
+              type="button"
+            >
+              Aplicar
+            </button>
+
+            {isVoucherInvalid && (
+              <span className="checkout-orders-invalid-voucher">
+                Cupom inválido
+              </span>
+            )}
+
           </div>
+
+          {voucherApplied ? (
+            <div className="checkout-orders-amount">
+              Total: R$&nbsp;
+              <span data-testid="customer_checkout__element-order-total-price">
+                {cartAmountWithVoucher.toLocaleString(
+                  'pt-BR',
+                  { minimumFractionDigits: 2, maximumFractionDigits: 2 },
+                )}
+              </span>
+            </div>
+          ) : (
+            <div className="checkout-orders-amount">
+              Total: R$&nbsp;
+              <span data-testid="customer_checkout__element-order-total-price">
+                {cartAmount.toLocaleString(
+                  'pt-BR',
+                  { minimumFractionDigits: 2, maximumFractionDigits: 2 },
+                )}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </CheckoutOrdersContainer>
