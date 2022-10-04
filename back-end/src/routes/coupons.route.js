@@ -3,6 +3,6 @@ const couponsController = require('../controllers/coupons.controller');
 
 const couponsRoute = Router();
 
-couponsRoute.post('/', couponsController.findCoupon );
+couponsRoute.post('/', couponsController.findCoupon);
 
 module.exports = couponsRoute;
