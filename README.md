@@ -1,4 +1,4 @@
-# Football Score
+# Delivery App
 
 ## Sobre
 
@@ -20,11 +20,11 @@ Projeto full stack React/Node.js desenvolvido por [Diene Ferreira](https://www.l
 * Conceitos de POO
 
 ## Desafios
--[x] Criar uma aplicação Front-end utilizando React
--[x] Criar uma aplicação Express.js
--[x] Criar uma API RESTful usando arquitetura MSC (Model-Service-Controller)
--[x] Validar dados das requisições com a biblioteca Joi
--[x] Implementar autenticação por Json Web Token (JWT)
--[x] Usar o ORM Sequelize.js para fazer a conexão e queries no banco de dados
--[x] Trabalhar em grupo utilizando metodologias ágeis
--[ ] Dockerizar a aplicação
+- [x] Criar uma aplicação Front-end utilizando React;
+- [x] Criar uma aplicação Express.js;
+- [x] Criar uma API RESTful usando arquitetura MSC (Model-Service-Controller);
+- [x] Validar dados das requisições com a biblioteca Joi;
+- [x] Implementar autenticação por Json Web Token (JWT);
+- [x] Usar o ORM Sequelize.js para fazer a conexão e queries no banco de dados;
+- [x] Trabalhar em grupo utilizando metodologias ágeis;
+- [ ] Dockerizar a aplicação
